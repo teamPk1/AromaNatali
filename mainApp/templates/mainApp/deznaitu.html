@@ -1,9 +1,6 @@
- <!DOCTYPE html>
- <html>
- <head>
- 	<title></title>
- </head>
- <body>
+{% extends "mainApp/header.html" %}
+
+ {% block content %}
  	
 <iframe src="https://www.google.com/maps/d/embed?mid=1vgb4_LaAXB9PfhPUxYYO43SnHfBMgbkx" width="640" height="480"></iframe>
 <h3> м. Коломия</h3>
@@ -30,5 +27,4 @@
 	<input type="reset" value="Clear">
 </form>
 
- </body>
- </html>
+ {% endblock %}

@@ -24,6 +24,7 @@ def product(request, product_id):
 		"product" : product
 	}
 	return render(request,'mainApp/ProductPage.html', context)
-
-def strong1(request):
-	return render(request,'mainApp/homepages_women.html')
+def menu(request):
+	return render(request, "mainApp/construction.html")
+def about(request):
+	return render(request, "mainApp/deznaitu.html")
