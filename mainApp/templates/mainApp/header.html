@@ -1,0 +1,68 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<title></title>
+ 	{%  load staticfiles %}
+ 	 <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  {% load static %}
+ 	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+ 	<script src="js/scrips.js"></script>
+	<!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+     <div  class="navbar-header">
+     	 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Навигация</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="static/mainApp/images/logo.png"width="80" alt="parfum" class="img2"></a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        	<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Товари <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="static/mainApp/index_W/index_W.html">Жіночі парфуми</a></li>
+              <li><a href="static/mainApp/index_M/index_M/index_M.html" >Чоловічі парфуми</a></li>
+              
+            </ul>
+          </li>
+  
+          
+          <li><a href="deznaitu.html">Де наc знайти</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Вхід </a>
+		<li><a href="#"><img src=" static/mainApp/images/korz.png" width="50" alt="parfum" class="img">  </a></li>
+		</ul>
+      </div>
+    </div>
+	</nav>
+	</header>
+
+      {% block content %}
+      {% endblock %}
+     
+</body>
+ </html>
+
+
+
+
+
+
