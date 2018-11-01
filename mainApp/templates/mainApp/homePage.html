@@ -1,33 +1,21 @@
 {% extends "mainApp/header.html" %}
  {% load static %}
  {%block content %}
-<link rel="stylesheet" href="static/css/style.css"> </link>
+ <!-- <img src="{{ link }}", width="500px", height="500px"> -->
+
+
+
+
 <p> <h1 align="center"><font size="6" color="blue" > Популярні парфуми </font></h1></p>
  <table border = "0" width ="70%" align= "center" >
 
     <tr>
-      <th> <a href="{% url 'strong'%}"> <img  src=" static/mainApp/popular_parfum_foto/1.jpg" align= "center"  width="300" alt="parfum" > </a>
-  <div class="infa_parfum">Chanel Chance </div>
-   <a> 2028 грн </a> <a href="{% url 'strong'%}"> <p><input type="button"  value=" Більше->"></p></a><br><br></th>
-
-      <th><a href="{% url 'strong'%}"> <img  src="{% static 'mainApp/popular_parfum_foto/2.jpg'%}" align= "center"  width="300" alt="parfum" > </a>
-  <div  class="infa_parfum"> Christian Dior </div>
-   <a> 2466 грн </a><a href="{% url 'strong' %}"> <p> <input type="button"  value=" Більше->"></p> </a> </th>
-
-    </tr>
-
-
-    <tr>
-<th><a href="{% url 'strong'%}" > <img  src="{% static 'mainApp/popular_parfum_foto/3.jpg'%}" align= "center"  width="300" alt="parfum" > </a>
-  <div  class="infa_parfum">The One For Men </div>
-   <a> 2249 грн </a><a href="{% url 'strong'%}"> <p> <input type="button"  value=" Більше->"></p> </a></th>
-
-
-
-      <th><a href="{% url 'strong'%}" > <img  src="{% static 'mainApp/popular_parfum_foto/4.jpg'%}" align= "center"  width="300" alt="parfum" > </a>
-  <div  class="infa_parfum">Creed Aventus </div>
-   <a> 4124 грн </a><a href="{%url 'strong'%}"> <p> <input type="button"  value=" Більше->"></p> </a> </th>
-   
+      {% for product in products %}
+      <th> <a href="{% url 'product' product.id %}"> <img  src=" {{ product.image }}" align= "center"  width="300" alt="parfum" > </a>
+  <div class="infa_parfum">{{ product.name }} </div>
+   <a> {{ product.price }} грн </a> <a href="{% url 'product' product.id %}"> <p><input type="button"  value=" Більше->"></p></a><br><br></th>
+      {% endfor %}
+      
 <p align= "right" ><a class="topbutton" href="#top">Вгору▲</a></p>
 
     </tr>

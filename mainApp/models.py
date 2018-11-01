@@ -3,14 +3,17 @@ from django.contrib.auth.models import User
 
 class Product(models.Model):
 	name = models.CharField(max_length = 50)
-	#image = сonnect to google drive
+	image = models.CharField(max_length = 100) # shared link
 	description = models.TextField()
 	brand = models.CharField(max_length = 50)
-	gender = models.IntegerField(default = -1)
+	gender = models.IntegerField(default = -1) # 0 men 1 woman 2 both
 	price = models.DecimalField(max_digits = 6, decimal_places = 2)
 	amount_present = models.IntegerField(default = 0)
 
-class Orders(models.Model):
+	def __str__(self):
+		return self.name
+
+class Order(models.Model):
 	product_name = models.ForeignKey(Product, default = None, on_delete = models.CASCADE)
 	# Deletion of product should be possible only when there's no product in waiting
 	user_name = models.ForeignKey(User, default = None, on_delete = models.CASCADE)
