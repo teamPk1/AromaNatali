@@ -1,0 +1,98 @@
+{% extends "mainApp/header.html" %}
+ {% load static %}
+ {%block content %}
+  <!-- basic styling just for this demo -->
+  
+
+
+
+  <p><h1 align="center"><font size="6" color="hotpink" >Жіночі парфуми </font></h1></p>
+          <link rel="stylesheet" href="../css/style_WM.css"/>
+
+  <script src="../js/scrips.js"></script>
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- jquery --> 
+  <script src="../js/jquery-1.7.2.min.js" type="text/javascript"></script>
+  <!-- easing plugin ( optional ) -->
+  <script src="../js/easing.js" type="text/javascript"></script>
+  <!-- UItoTop plugin -->
+  <script src="../js/jquery.ui.totop.js" type="text/javascript"></script>
+  <!-- Starting the plugin -->
+
+  <table border = "0" width ="70%" align= "center" >
+
+    <tr>
+      <th> <a href="index_W_1.html" > <img  src = "{{ context }}"  height="70%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">  Armani Sky di Giola </div> <a> 1689 грн </a> <br><br><a href="#" class="button7"> купити </a></th>
+
+      <th> <a href="index_W_2.html" > <img  src = "../womens_parfums_foto/2.jpg"  height="70%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">  Jimmy Choo L'eau </div> <a> 988 грн </a> <br> <br> <a href="#" class="button7"> купити </a></th>
+
+      <th>  <a href="index_W_3.html" > <img  src = "../womens_parfums_foto/3.jpg"  height="50%" alt="картинку вкрали" > 
+  <div  class="infa_parfum"> YSL Black Opium </div> </a> <a> 2130 грн </a> <br><br> <a href="#" class="button7"> купити </a></th>
+
+      <th> <a href="index_W_4.html" > <img  src = "../womens_parfums_foto/4.jpg"  height="50%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">Lanvin Eclat de Nuit </div>  </a> <a> 1299 грн </a> <br><br> <a href="#" class="button7"> купити </a></th>
+
+    </tr>
+
+
+    <tr>
+
+      <th> <a href="index_W_5.html" > <img  src = "../womens_parfums_foto/5.jpg"  height="70%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">Mexx Black </div>  </a> <a> 517 грн  </a><br><br> <a href="#" class="button7"> купити </a></th>
+
+      <th> <a href="index_W_6.html" > <img  src = "../womens_parfums_foto/6.jpg"  height="60%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">Boss Nuit  </div>  </a><a> 1389 грн   </a> <br><br><a href="#" class="button7"> купити </a></th>
+
+      <th > <a href="index_W_7.html" > <img  src = "../womens_parfums_foto/7.jpg"  height="50%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">Carolina Herrera Good Girl </div>   </a><a>1955 грн </a> <br><br><a href="#" class="button7"> купити </a></th>
+
+      <th> <a href="index_W_8.html" > <img  src = "../womens_parfums_foto/8.jpg"  height="50%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">Afnan Supremacy Pink</div>  </a><a>2048 грн  </a><br><br> <a href="#" class="button7"> купити </a></th>
+
+    </tr>
+
+
+    <tr>
+      <th> <a href="index_W_9.html" > <img  src = "..mainApp/womens_parfums_foto/9.jpg"  height="60%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">Calvin Klein Obsessed</div>  </a><a>2098 грн   </a><br><br><a href="#" class="button7"> купити </a></th>
+
+      <th> <a href="index_W_10.html" > <img  src = "../womens_parfums_foto/10.jpg"  height="60%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">Paco Rabanne Lady Million Prive </div>  </a><a> 2389 грн   </a> <br><br><a href="#" class="button7"> купити </a></th>
+
+      <th > <a href="index_W_11.html" > <img  src = "../womens_parfums_foto/11.jpg"  height="60%" alt="картинку вкрали" > 
+  <div  class="infa_parfum"> Angel Schlesser Pour Elle eau de toilette </div> </a><a>1318 грн  </a><br><br><a href="#" class="button7"> купити </a></th>
+
+      <th> <a href="index_W_12.html" > <img  src = "../womens_parfums_foto/12.jpg"  height="60%" alt="картинку вкрали" > 
+  <div  class="infa_parfum">Armand Basi In Me </div>   </a><a>965 грн  </a><br><br><a href="#" class="button7"> купити </a></th>
+
+    </tr>
+
+  </table>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      /*
+      var defaults = {
+          containerID: 'toTop', // fading element id
+        containerHoverID: 'toTopHover', // fading element hover id
+        scrollSpeed: 1200,
+        easingType: 'linear' 
+      };
+      */
+      
+      $().UItoTop({ easingType: 'easeOutQuart' });
+      
+    });
+  </script>
+
+
+{% endblock %}
+
+  
+

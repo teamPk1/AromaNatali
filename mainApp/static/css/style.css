@@ -116,3 +116,15 @@ input:valid + span:after {
    input[type="number"] {
     margin-right: -3px;
    }
+   /*.card{
+ padding-left: 10%;
+
+   }*/
+   .dani{
+     padding-left: 2%;
+   }
+  .form1{
+   padding-right: : 60%;
+    margin: 50px;
+    float: right;
+  }

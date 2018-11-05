@@ -14,5 +14,9 @@
     color:red; /* Ссылка красного цвета */
    } 
 
-  
-  
+   <!-- basic styling just for this demo -->
+  <style type="text/css" media="screen">
+    *{margin:0 auto;}
+    #wrapper {width:90%;margin:15px auto;}
+    p { margin:20px 0;}
+  </style>

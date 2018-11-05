@@ -19,6 +19,14 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
+<!-- basic styling just for this demo -->
+  <style type="text/css" media="screen">
+    *{margin:0 auto;}
+    #wrapper {width:90%;margin:15px auto;}
+    p { margin:20px 0;}
+  </style>
+
+
 <body>
   <header>
 <nav class="navbar navbar-default">
@@ -30,7 +38,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="static/mainApp/images/logo.png"width="80" alt="parfum" class="img2"></a>
+            <a class="navbar-brand" href="{% url 'index' %}"><img src="https://www.dropbox.com/s/x9ayacbp9scqf0l/aromaTrans.png?raw=1"width="80" alt="parfum" class="img2"></a>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,25 +46,50 @@
         	<li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Товари <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="static/mainApp/index_W/index_W.html">Жіночі парфуми</a></li>
-              <li><a href="static/mainApp/index_M/index_M/index_M.html" >Чоловічі парфуми</a></li>
+              <li><a href="{% url 'menu' %}">Жіночі парфуми</a></li>
+              <li><a href="{% url 'menu' %}" >Чоловічі парфуми</a></li>
               
             </ul>
           </li>
   
           
-          <li><a href="deznaitu.html">Де наc знайти</a></li>
+          <li><a href="{% url 'about' %}">Де наc знайти</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Вхід </a>
-		<li><a href="#"><img src=" static/mainApp/images/korz.png" width="50" alt="parfum" class="img">  </a></li>
+		<li><a href="#"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img">  </a></li>
 		</ul>
       </div>
     </div>
 	</nav>
 	</header>
 
+
       {% block content %}
       {% endblock %}
+      <!-- jquery --> 
+  <script src="{% static 'js/jquery-1.7.2.min.js'%}" type="text/javascript"></script>
+  <!-- easing plugin ( optional ) -->
+  <script src="{% static 'js/easing.js'%}" type="text/javascript"></script>
+  <!-- UItoTop plugin -->
+  <script src="{%  static 'js/jquery.ui.totop.js' %}" type="text/javascript"></script>
+  <!-- Starting the plugin -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+      /*
+      var defaults = {
+          containerID: 'toTop', // fading element id
+        containerHoverID: 'toTopHover', // fading element hover id
+        scrollSpeed: 1200,
+        easingType: 'linear' 
+      };
+      */
+      
+      $().UItoTop({ easingType: 'easeOutQuart' });
+      
+    });
+  </script>
+
+
      
 </body>
  </html>
