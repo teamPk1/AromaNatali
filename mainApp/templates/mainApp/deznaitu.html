@@ -1,8 +1,24 @@
 {% extends "mainApp/header.html" %}
 
  {% block content %}
- 	
-<iframe src="https://www.google.com/maps/d/embed?mid=1vgb4_LaAXB9PfhPUxYYO43SnHfBMgbkx" width="640" height="480"></iframe>
+ <link rel="stylesheet" href="../css/style.css"> </link>
+ 	&#160;&#160;
+&#160;&#160;<iframe src="https://www.google.com/maps/d/embed?mid=1vgb4_LaAXB9PfhPUxYYO43SnHfBMgbkx" width="640" height="480" class="card"></iframe>
+<div class=form1>
+	<h3>Всі ваші зауваження і пропозиції:</h3>
+<h3 >Напишіть нам</h3>
+<form action="contact.php" method="post">
+	Твоє ім'я<br>
+    <input type="text" name="cf_name"><br>
+	Твій e-mail<br>
+    <input type="text" name="cf_email"><br>
+	Повідомлення<br>
+    <textarea name="cf_message"></textarea><br>
+	<input type="submit" value="Send">
+	<input type="reset" value="Clear">
+</form>
+</div>
+<div class="dani">
 <h3> м. Коломия</h3>
 
 <h3>з 8:00 до 20:00 вихідні :субота-неділя</h3>
@@ -12,19 +28,8 @@
 <h3>Адрес: м.Коломия, вул. Тараса Шевченка</h3>
 
 <h3>Срок зберігання  заказу на пункті видачі 5 днів.</h3>
-<h3>Всі ваші зауваження і пропозиції:</h3>
 
 
-<p>Напишіть нам</p>
-<form action="contact.php" method="post">
-	Your name<br>
-    <input type="text" name="cf_name"><br>
-	Your e-mail<br>
-    <input type="text" name="cf_email"><br>
-	Message<br>
-    <textarea name="cf_message"></textarea><br>
-	<input type="submit" value="Send">
-	<input type="reset" value="Clear">
-</form>
+</div>
 
  {% endblock %}

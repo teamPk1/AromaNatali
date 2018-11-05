@@ -6,13 +6,10 @@ from .models import Product
 
 
 context = {
-	"Products": Product.objects.all()
+	"products" : Product.objects.all()
 }
-
 def index(request):
-	context = {
-		"products" : Product.objects.all()
-	}
+
 	return render(request,'mainApp/homePage.html', context)
 
 def product(request, product_id):
@@ -25,6 +22,8 @@ def product(request, product_id):
 	}
 	return render(request,'mainApp/ProductPage.html', context)
 def menu(request):
-	return render(request, "mainApp/construction.html")
+	return render(request, "mainApp/catalog.html", context)
+
 def about(request):
 	return render(request, "mainApp/deznaitu.html")
+
