@@ -7,7 +7,7 @@
 <div class=form1>
 	<h3>Всі ваші зауваження і пропозиції:</h3>
 <h3 >Напишіть нам</h3>
-<form action="{% url 'sendEmail' %}" method="post">
+<form action="{% url 'about' %}" method="post">
 	{% csrf_token %}
 	Твоє ім'я<br>
     <input type="text" name="name"><br>

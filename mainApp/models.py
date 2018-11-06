@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 class Product(models.Model):
 	name = models.CharField(max_length = 50)
@@ -9,6 +10,7 @@ class Product(models.Model):
 	gender = models.IntegerField(default = -1) # 0 men 1 woman 2 both
 	price = models.DecimalField(max_digits = 6, decimal_places = 2)
 	amount_present = models.IntegerField(default = 0)
+	is_featured = models.IntegerField(default = 0)
 
 	def __str__(self):
 		return self.name
@@ -24,4 +26,7 @@ class Review(models.Model):
 	rate = models.IntegerField()
 	review = models.TextField()
 	user_name = models.ForeignKey(User, default = None, on_delete = models.CASCADE)
-	
+class Profile (models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	phone_number = models.CharField(max_length=30) 
+
