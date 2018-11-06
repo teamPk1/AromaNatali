@@ -7,13 +7,14 @@
 <div class=form1>
 	<h3>Всі ваші зауваження і пропозиції:</h3>
 <h3 >Напишіть нам</h3>
-<form action="contact.php" method="post">
+<form action="{% url 'sendEmail' %}" method="post">
+	{% csrf_token %}
 	Твоє ім'я<br>
-    <input type="text" name="cf_name"><br>
+    <input type="text" name="name"><br>
 	Твій e-mail<br>
-    <input type="text" name="cf_email"><br>
+    <input type="text" name="email"><br>
 	Повідомлення<br>
-    <textarea name="cf_message"></textarea><br>
+    <textarea name="message"></textarea><br>
 	<input type="submit" value="Send">
 	<input type="reset" value="Clear">
 </form>
