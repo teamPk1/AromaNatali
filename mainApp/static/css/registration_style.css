@@ -21,10 +21,15 @@ input[type="text"],input[type="password"]{
 	 border-radius: 4px;
 	 padding-left: 40px;
 }
-
+.dws-input
+{
+	margin-left:40px; 
+}
 .dws-input input:hover{
  	box-shadow: 0 0 6px 3px #000000;
+ 	
 }
+
 
 .dws-submit {
 	 padding: 13px 30px;
@@ -35,6 +40,7 @@ input[type="text"],input[type="password"]{
 	 border: none;
 	 border-bottom: 4px solid #000000;
 	 cursor: pointer;
+	 margin-left:40px; 
 }
 
 .dws-submit:hover{
@@ -42,6 +48,11 @@ input[type="text"],input[type="password"]{
 	 background: #fff;
 	 color: #2c536c;
 }
-
+.reg{
+	 color: blue;
+	 font-style: italic;
+	 font-size: 15px;
+	 margin-left:40px; 
+}
 
 
