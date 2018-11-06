@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('product/<int:product_id>', views.product, name='product'),
     path('menu', views.menu, name='menu'),
-    path('about', views.about, name="about")
+    path('about', views.about, name="about"),
+    path("128asd122819u", views.sendEmail, name="sendEmail")
     ]

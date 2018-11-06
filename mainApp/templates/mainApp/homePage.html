@@ -11,12 +11,10 @@
 
     <tr>
       {% for product in products %}
-      <th> <a href="{% url 'product' product.id %}"> <img  src=" {{ product.image }}" align= "center"  width="300" alt="parfum" > </a>
+      <th width="50%"> <a href="{% url 'product' product.id %}"> <img  src=" {{ product.image }}" align= "center"  width="80%"alt="parfum" > </a>
   <div class="infa_parfum">{{ product.name }} </div>
    <a> {{ product.price }} грн </a> <a href="{% url 'product' product.id %}"> <p><input type="button"  value=" Більше->"></p></a><br><br></th>
       {% endfor %}
-      
-
 
     </tr>
   </table>

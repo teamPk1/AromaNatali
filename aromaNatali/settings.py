@@ -102,6 +102,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_PORT = "25"
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = "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"
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

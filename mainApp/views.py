@@ -2,14 +2,13 @@ from django.shortcuts import render
 import dropbox
 from django.http import Http404
 from .models import Product
-
+from django.core.mail import send_mail
 
 
 context = {
 	"products" : Product.objects.all()
 }
 def index(request):
-
 	return render(request,'mainApp/homePage.html', context)
 
 def product(request, product_id):
@@ -27,3 +26,15 @@ def menu(request):
 def about(request):
 	return render(request, "mainApp/deznaitu.html")
 
+
+def sendEmail(request):
+	name = request.POST["name"]
+	email = request.POST["email"]
+	message = request.POST["message"]
+	send_mail(
+		name+' відправив вам повідомлення',
+		message,
+		email,
+		['vadimuha13@gmail.com']
+		)
+	return render(request, "mainApp/Email.html")
