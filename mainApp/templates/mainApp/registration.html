@@ -1,0 +1,39 @@
+{% extends "mainApp/header.html" %}
+ {% load static %}
+ {%block content %}
+ <link rel="stylesheet" href="{%  static 'css/registration_style.css' %}" type="text/css">
+     <div>Якщо Ви вже зареєстровані, перейдіть на сторінку входу в систему</div>
+	<h1><div>Реєстрація</div></h1>
+<div >
+	<form>
+		<div class="dws-input">
+			<h2>Ім'я</h2>
+			<input type="text" name="fіrstname" placeholder="Ім'я">
+		</div>
+		
+		<div class="dws-input">
+			<h2>Фамілія</h2>
+			<input type="text" name="lastname" placeholder="Фамілія">
+		</div>
+
+		<div class="dws-input">
+			<h2>Елекронна пошта</h2>
+			<input type="text" name="amil" placeholder="Елекронна пошта">
+		</div>
+
+		<div class="dws-input">
+			<h2>Номер телофона</h2>
+			<input type="text" name="amil" placeholder="Номер телофона">
+		</div>
+
+		<div class="dws-input">
+			<h2>Пароль</h2>
+			<input type="password" name="password" placeholder="Пароль">
+		</div>
+
+		<input class="dws-submit" type="submit" name="submit" value="ВІДПРАВИТИ"><br />
+	</form>
+
+	</div>
+</div>
+{% endblock %}

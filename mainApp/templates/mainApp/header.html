@@ -13,6 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   {% load static %}
  	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/log_in_style.css'%}" type="text/css">
  	<script src="js/scrips.js"></script>
 	<!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -54,8 +55,27 @@
   
           
           <li><a href="{% url 'about' %}">Де наc знайти</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Вхід </a>
+         <li class="dropdown">
+            <a href="#" href="log_in.html" class="dropdown-toggle" data-toggle="dropdown" >Вхід <bclass="caret"></b></a>
+            <ul class="dropdown-menu">
+                      <div class="dws-input">
+                        <h4>Логін</h4>
+                        <input type="text" name="username" placeholder="Введіть логін">
+                      </div>
+
+                      <div class="dws-input">
+                        <h4>Пароль</h4>
+                        <input type="password" name="password" placeholder="Введіть пароль">
+                      </div>
+                      
+                      <input class="dws-submit" type="submit" name="submit" value="ВВІЙТИ"><br/>
+                      <div class="logos">
+                      <a href="{%  url 'registration' %}">Реєстрація</a>
+                      <a href="#">Забули пароль?</a>
+                      </div>
+               
+            </ul>
+
 		<li><a href="#"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img">  </a></li>
 		</ul>
       </div>
@@ -77,12 +97,12 @@
     $(document).ready(function() {
       /*
       var defaults = {
-          containerID: 'toTop', // fading element id
+          containerID: '^', // fading element id
         containerHoverID: 'toTopHover', // fading element hover id
         scrollSpeed: 1200,
         easingType: 'linear' 
       };
-      */
+    */
       
       $().UItoTop({ easingType: 'easeOutQuart' });
       

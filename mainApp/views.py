@@ -26,4 +26,6 @@ def menu(request):
 
 def about(request):
 	return render(request, "mainApp/deznaitu.html")
+def registration(request):
+	return render(request, "mainApp/registration.html")
 

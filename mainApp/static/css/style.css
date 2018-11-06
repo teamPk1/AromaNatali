@@ -1,6 +1,12 @@
 body{
   background-color:#ffff;
 }
+
+.logo a{
+  margin-left: 30px;
+  color: #000000;
+  font-size: 16px;
+}
 .shol_parf{
 text-transform: uppercase;
 	color: #fff;
@@ -127,4 +133,34 @@ input:valid + span:after {
    padding-right: : 60%;
     margin: 50px;
     float: right;
+
   }
+  #toTop {
+  display:none;
+  text-decoration:none;
+  position:fixed;
+  bottom:10px;
+  right:10px;
+  overflow:hidden;
+  width:51px;
+  height:51px;
+  border:none;
+  text-indent:100%;
+  background:url(../images/top.png) no-repeat left top;
+}
+
+#toTopHover {
+  background:url(../images/top.png) no-repeat left -51px;
+  width:51px;
+  height:51px;
+  display:block;
+  overflow:hidden;
+  float:left;
+  opacity: 0;
+  -moz-opacity: 0;  
+  filter:alpha(opacity=0);
+}
+
+#toTop:active, #toTop:focus {
+  outline:none;
+}
