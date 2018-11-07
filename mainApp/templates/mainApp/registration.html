@@ -59,26 +59,38 @@
 				lname = $("#lname").val();
 				email = $("#email").val();
 				phone = $("#phone").val();
+				if(!p.isValidNumber() || !phone){
+					$("#phone").attr("style", "border: 1px solid #ff0000")
+					$("#phone").attr("placeholder", "Введіть вірний номер телефону")
+					error = true
+				}
+				else{
+					$("#phone").attr("style", "border-radius: 4px")
+					$("#phone").attr("placeholder", "Введіть вірний номер телефону")
+				}
 				if(!email){
 					$("#email").attr("style", "border: 1px solid #ff0000")
 					$("#email").attr("placeholder", "Введіть email")
+				}
+				else{
+					$("#email").attr("style", "border-radius: 4px")
+					$("#email").attr("placeholder", "Введіть email")	
 				}
 				if(!password){
 					$("#password").attr("style", "border: 1px solid #ff0000")
 					$("#password").attr("placeholder", "Введіть пароль")
 					error = true
 				}
-				if(password != password1){
+				else if(password != password1){
 					$("#password").attr("style", "border: 1px solid #ff0000")
 					$("#password1").attr("style", "border: 1px solid #ff0000")
 					$("#password").attr("placeholder", "Паролі повинні співпадати")
 					$("#password1").attr("placeholder", "Паролі повинні співпадати")
 					error = true
 				}
-				if(!p.isValidNumber() || !phone){
-					$("#phone").attr("style", "border: 1px solid #ff0000")
-					$("#phone").attr("placeholder", "Введіть вірний номер телефону")
-					error = true
+				else if(password.length < 6){
+					$("#password").attr("style", "border: 1px solid #ff0000")
+					$("#password").attr("placeholder", "Заслабкий пароль")
 				}
 				else{
 					$("#password").attr("style", "border-radius: 4px;")
@@ -137,9 +149,10 @@
 					if (data.existance == 2){
 						$("#username").attr("style", "border:1px solid #ff0000")
 						$("#username").attr("placeholder", "Такий логін уже зареєстровано")
+						return false
 					}
 					else{
-						// $("#form").submit();
+						$("#form").submit();
 					}
 				})
 			})
