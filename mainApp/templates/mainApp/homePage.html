@@ -7,17 +7,16 @@
 
 
 <p> <h1 align="center"><font size="6" color="blue" > Популярні парфуми </font></h1></p>
- <table border = "0" width ="70%" align= "center" >
+ <div  width ="70%" align= "center" >
 
-    <tr>
       {% for product in products %}
-      <th width="50%"> <a href="{% url 'product' product.id %}"> <img  src=" {{ product.image }}" align= "center"  width="80%"alt="parfum" > </a>
+      <div width="50%"> <a href="{% url 'product' product.id %}"> <img  src=" {{ product.image }}" align= "center"  width="80%"alt="parfum" > </a>
   <div class="infa_parfum">{{ product.name }} </div>
-   <a> {{ product.price }} грн </a> <a href="{% url 'product' product.id %}"> <p><input type="button"  value=" Більше->"></p></a><br><br></th>
+   <a> {{ product.price }} грн </a> <a href="{% url 'product' product.id %}"> <p><input type="button"  value=" Більше->"></p></a><br><br></div>
       {% endfor %}
 
-    </tr>
-  </table>
+   </div>
+  </div>
   
 
 
