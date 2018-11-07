@@ -2,46 +2,152 @@
  {%block content %}
  {% load static %}
  <link rel="stylesheet" href="{%  static 'css/registration_style.css' %}" type="text/css">
-     
+ <link rel="stylesheet" href="{%  static 'intl-tel-input/build/css/intlTelInput.css' %}" type="text/css">
+    <script src="{% static 'intl-tel-input/build/js/intlTelInput.js' %}"></script>
+    <script src="{% static 'intl-tel-input/build/js/utils.js' %}"></script>
 	<h1><div  class="dws-input">Реєстрація</div></h1>
 	<h4><p class=" reg">Заповнити анкету потрібно лише один раз, надалі всі ваші дані будуть зберігатися тут.</br>
-Ми гарантуємо повну збереження ваших особистих даних.</br> Інформація про друзів ми не продаємо;</p></h4>
+Ми гарантуємо повну збереження ваших особистих даних.</br> Інформацію про друзів ми не продаємо;</p></h4>
 <div >
-	<form action="{% url 'registration' %}", method="POST">
+	<form id="form"action="{% url 'registration' %}", method="POST">
 		{% csrf_token %}
 		<div class="dws-input">
-			<input type="text" name="username" placeholder="Ваш логін">
+			<input type="text" id="username" name="username" placeholder="Ваш логін">
 		</div>
 		<div class="dws-input">
-			<input type="text" name="fіrstname" placeholder="Ім'я">
+			<input type="text" id="fname" name="fіrstname" placeholder="Ім'я">
 		</div>
 		
 		<div class="dws-input">
 			<h2>Фамілія</h2>
-			<input type="text" name="lastname" placeholder="Фамілія">
+			<input type="text" id="lname" name="lastname" placeholder="Фамілія">
 		</div>
 
 		<div class="dws-input">
 			<h2>Елекронна пошта</h2>
 			
-			<input type="text" name="email" placeholder="Елекронна пошта">
+			<input type="text" id="email" name="email" placeholder="Елекронна пошта">
 		</div>
 
 		<div class="dws-input">
 			<h2>Номер телофона</h2>
 		
-			<input type="text" name="phone" placeholder="Номер телофона">
+			<input type="tel"  id="phone" name="phone" >
 		</div>
 
 		<div class="dws-input">
 			<h2>Пароль</h2>
 			
-			<input type="password" name="password" placeholder="Пароль">
+			<input type="password" id="password" name="password" placeholder="Пароль">
+			<input type="password" id="password1" name="password1" placeholder="Пароль ще раз">
 		</div>
 
-		<input class="dws-submit" type="submit" name="submit" value="ВІДПРАВИТИ"><br />
+		<input class="dws-submit" id="sub" type="submit" name="sub" value="ВІДПРАВИТИ"><br />
+		<script type="text/javascript">
+		 	var input = document.querySelector("#phone");
+ 			p = window.intlTelInput(input, {
+				  utilsScript: "{% static 'intl-tel-input/build/js/utils.js?1537727621611' %}" 
+				});
+						
+			$("#sub").click(function (e) {
+				e.preventDefault();
+				error = false;
+				username = $("#username").val();
+				password = $("#password").val();
+				password1 = $("#password1").val();
+				fname = $("#fname").val();
+				lname = $("#lname").val();
+				email = $("#email").val();
+				phone = $("#phone").val();
+				if(!email){
+					$("#email").attr("style", "border: 1px solid #ff0000")
+					$("#email").attr("placeholder", "Введіть email")
+				}
+				if(!password){
+					$("#password").attr("style", "border: 1px solid #ff0000")
+					$("#password").attr("placeholder", "Введіть пароль")
+					error = true
+				}
+				if(password != password1){
+					$("#password").attr("style", "border: 1px solid #ff0000")
+					$("#password1").attr("style", "border: 1px solid #ff0000")
+					$("#password").attr("placeholder", "Паролі повинні співпадати")
+					$("#password1").attr("placeholder", "Паролі повинні співпадати")
+					error = true
+				}
+				if(!p.isValidNumber() || !phone){
+					$("#phone").attr("style", "border: 1px solid #ff0000")
+					$("#phone").attr("placeholder", "Введіть вірний номер телефону")
+					error = true
+				}
+				else{
+					$("#password").attr("style", "border-radius: 4px;")
+					$("#password1").attr("style", "border-radius: 4px;")
+					$("#password").attr("placeholder", "Пароль")
+					$("#password1").attr("placeholder", "Пароль ще раз")
+				}
+				if(!fname){
+					$("#fname").attr("style", "border: 1px solid #ff0000")
+					$("#fname").attr("placeholder", "Введіть ім'я")
+					error = true;
+				}
+			
+				else{
+					$("#fname").attr("style", "border-radius: 4px;")
+					$("#fname").attr("placeholder", "Ім'я")					
+				}
+				if(!lname){
+					$("#lname").attr("style", "border: 1px solid #ff0000")
+					$("#lname").attr("placeholder", "Введіть фамілію")
+					error = true
+				}
+				else{
+					$("#lname").attr("style", "border-radius: 4px;")
+					$("#lname").attr("placeholder", "Фамілія")					
+				}
+				if (!username){
+					$("#username").attr("style", "border: 1px solid #ff0000")
+					$("#username").attr("placeholder", "Введіть логін")
+					error = true
+				}
+				else{
+					$("#username").attr("style", "border-radius: 4px;")
+					$("#username").attr("placeholder", "Ваш логін")
+				}
+
+				if (error){
+					return false
+				}
+
+				$.ajax({
+					method: "POST",
+					url: "{% url 'reg_check' %}",
+					data: {
+						'username': username,
+						'email': email,
+						'csrfmiddlewaretoken': '{{ csrf_token }}'
+					},
+					dataType: "json"
+				}).done(function (data) {
+					if (data.existance == 1){
+						$("#email").attr("style", "border:1px solid #ff0000")
+						$("#email").attr("placeholder", "Такий email уже зареєстровано")
+						return false;
+					}
+					if (data.existance == 2){
+						$("#username").attr("style", "border:1px solid #ff0000")
+						$("#username").attr("placeholder", "Такий логін уже зареєстровано")
+					}
+					else{
+						// $("#form").submit();
+					}
+				})
+			})
+
+			
+		</script>
 	</form>
-		
+
 	</div>
 </div>
 {% endblock %}
