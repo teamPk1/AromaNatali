@@ -32,16 +32,14 @@
 
 
 	
-	<div border = "0" width ="70%"   height="70%" align= "center" >
-		
-	<div>
-					
+	<div class="context">
+							
           {% for product in products %}
-			<div> <a href="index_M_1.html" > <img  src =  "{{ product.image }}"  height="40%" width="50%" alt="картинку вкрали" > 
+			<div class="smallProduct"> <a href="index_M_1.html" > <img  src =  "{{ product.image }}"  height="40%" width="50%" alt="картинку вкрали" > 
 	<div  class="infa_parfum">  {{ product.name }} </div> <a> 393 грн </a> <br><br><a href="#" class="button7"> купити </a></div>
 		{% endfor %}
 			
-		</div>
+
 </div>
 	
 <!-- jquery -->	

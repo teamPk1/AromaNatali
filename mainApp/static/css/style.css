@@ -1,5 +1,6 @@
 body{
   background-color:#ffff;
+  width: 100%;
 }
 
 .logo a{
@@ -163,4 +164,15 @@ input:valid + span:after {
 
 #toTop:active, #toTop:focus {
   outline:none;
+}
+.product{
+  float:left;
+   width: 50%;
+}
+.smallProduct{
+  width:25%;
+  float:left;
+}
+.context{
+  margin-left: 5%
 }
