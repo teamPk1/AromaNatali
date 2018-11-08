@@ -167,12 +167,35 @@ input:valid + span:after {
 }
 .product{
   float:left;
-   width: 50%;
+  width: 50%;
 }
 .smallProduct{
   width:25%;
   float:left;
+  margin-bottom: 5%;
 }
 .context{
   margin-left: 5%
+}
+
+button.t0 {
+    background: -moz-linear-gradient(#f2f2f2, #777, #404040, #252525);
+    background: -webkit-gradient(linear, 0 0, 0  100%, from(#f2f2f2), to(#252525), color-stop(0.6, #777), color-stop(0.6,  #404040));
+    color: #fff;
+    border: 3% solid  #666;
+  }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-content {
+    display: none;
+}
+.dropdown:hover .dropdown-content {display: block;}
+
+.regImage{
+  padding-bottom: 15%;
 }

@@ -18,6 +18,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="{% static 'js/easing.js' %}"></script>
+  <script src="{% static 'js/jquery.ui.totop.min.js' %}"></script>
 </head>
 <!-- basic styling just for this demo -->
   <style type="text/css" media="screen">
@@ -40,14 +42,16 @@
             </button>
             <a class="navbar-brand" href="{% url 'index' %}"><img src="https://www.dropbox.com/s/x9ayacbp9scqf0l/aromaTrans.png?raw=1"width="80" alt="parfum" class="img2"></a>
       </div>
+        <style>
 
+        </style>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
         	<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Товари <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="{% url 'menu' %}">Жіночі парфуми</a></li>
-              <li><a href="{% url 'menu' %}" >Чоловічі парфуми</a></li>
+            <a href="{% url 'menu' 2 %}" class="dropbtn">Товари <b class="caret"></b></a>
+            <ul class="dropdown-content" class="dropdown-menu">
+              <a href="{% url 'menu' 1 %}">Жіночі парфуми</a><br>
+              <a href="{% url 'menu' 0 %}" >Чоловічі парфуми</a>
               
             </ul>
           </li>
@@ -57,8 +61,8 @@
           
           {% if not auth %}
          <li class="dropdown" id="login_form">
-            <a href="#" href="log_in.html" class="dropdown-toggle" data-toggle="dropdown" >Вхід <bclass="caret"></b></a>
-            <ul class="dropdown-menu">
+            <a href="#" href="log_in.html"  class="dropbtn" class="dropdown-toggle" data-toggle="dropdown" >Вхід <bclass="caret"></b></a>
+            <ul class="dropdown-menu" class="dropdown-content">
               <form method="POST" >
                 {% csrf_token %}
                     <div class="dws-input">
@@ -102,7 +106,7 @@
                   }
                   else{
                     alert("Ви успішно війшли")
-                    $("#login_form").hide()
+                    location.reload()
                   }
               })
               })
@@ -110,6 +114,9 @@
             </script> 
             {% endif %}
 		<li><a href="#"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img">  </a></li>
+    {% if auth %}
+    <li><a id="logout" href="{% url 'logout' %}">Вийти</a></li>
+    {% endif %}
 		</ul>
       </div>
     </div>
@@ -120,8 +127,10 @@
       {% block content %}
       {% endblock %}
 
-  
+<script>
+  $().UItoTop({ easingType: 'easeOutQuart' });
 
+</script>  
 
      
 </body>

@@ -1,8 +1,11 @@
 {% extends "mainApp/header.html" %}
  {% load static %}
  {%block content %}
+<div width="70%">
+{% if admin %}
 
 
+{% endif %}
 <p><h1 align="center"><font size="6" color="black" > {{ product.name }} </font></h1></p>
 
 <p> <img  src = "{{ product.image }}" align="left"  height="300em" alt="картинку вкрали" >  </a></p>
@@ -16,7 +19,7 @@
        &#160 &#160 <P_r>{{ product.price }} грн </P_r>&#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 
        	<a href="#" class="button7"> купити</a>
        		
-
+</div>
 {% endblock %}
 
 

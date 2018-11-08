@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import dropbox
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from .models import Product, Profile
 from django.core.mail import send_mail
 from django.urls import reverse
@@ -25,7 +25,7 @@ def index(request):
 			"products" : Product.objects.filter(is_featured=1),
 			"message" : "",
 			"auth": request.user.is_authenticated,
-			"admin": request.user.is_staff
+			"admin": request.user.is_staff,
 		}
 		return render(request,'mainApp/homePage.html', context)
 
@@ -40,11 +40,12 @@ def product(request, product_id):
 		"admin": request.user.is_staff
 	}
 	return render(request,'mainApp/ProductPage.html', context)
-def menu(request):
+def menu(request, gender):
 	context = {
 		"products" : Product.objects.all(),
 		"auth": request.user.is_authenticated,
-		"admin": request.user.is_staff
+		"admin": request.user.is_staff,
+		"gender": gender
 	}
 	return render(request, "mainApp/catalog.html", context)
 
@@ -150,3 +151,7 @@ def check_registration(request):
 				})
 	else:
 		return render(request, "mainApp/hacker.html")
+
+def logou(request):
+	logout(request)
+	return HttpResponseRedirect(reverse("index"))
