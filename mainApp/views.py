@@ -8,27 +8,24 @@ from django.contrib.auth.models import User
 from django.contrib.auth import *
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 
 def index(request):
 	if request.method == "POST":
-
 		username = request.POST["username"]
 		password = request.POST["password"]
 		user = authenticate(request, username=username, password=password)
 		if not user:
 			return JsonResponse({"authentification": 0})
 		else:
+			login(request, user)
 			return JsonResponse({"authentification": 1})
-		context = {
-			"products" : Product.objects.filter(is_featured=1),
-			"message" : ""
-		}
-		return render(request,'mainApp/homePage.html', context)
 	else:
 		context = {
 			"products" : Product.objects.filter(is_featured=1),
-			"message" : ""
+			"message" : "",
+			"auth": request.user.is_authenticated,
+			"admin": request.user.is_staff
 		}
 		return render(request,'mainApp/homePage.html', context)
 
@@ -38,12 +35,16 @@ def product(request, product_id):
 	except Product.DoesNotExist:
 		raise Http404("Product does not exist")
 	context = {
-		"product" : product
+		"product" : product,
+		"auth": request.user.is_authenticated,
+		"admin": request.user.is_staff
 	}
 	return render(request,'mainApp/ProductPage.html', context)
 def menu(request):
 	context = {
-		"products" : Product.objects.all()
+		"products" : Product.objects.all(),
+		"auth": request.user.is_authenticated,
+		"admin": request.user.is_staff
 	}
 	return render(request, "mainApp/catalog.html", context)
 
@@ -60,7 +61,9 @@ def about(request):
 			)
 		context = {
 			"products" : Product.objects.filter(is_featured=1),
-			"message" : "Ваше повідомлення відправлене"
+			"message" : "Ваше повідомлення відправлене",
+			"auth": request.user.is_authenticated,
+			"admin": request.user.is_staff
 		}
 		return render(request, "mainApp/homePage.html", context)
 	else:
@@ -80,35 +83,46 @@ def registration(request):
 		if username =="" or password == "" or phone == "" or email == "" or sname == "" or fname == "":
 			context = {
 				"products" : Product.objects.filter(is_featured=1),
-				"message" : "Потрібно заповнити всі поля"
+				"message" : "Потрібно заповнити всі поля",
+				"auth": request.user.is_authenticated,
+				"admin": request.user.is_staff
 			}
 			return render(request, "mainApp/homePage.html", context)		
 		if password != password2:
 			context = {
 				"products" : Product.objects.filter(is_featured=1),
-				"message" : "Паролі не співпадають"
+				"message" : "Паролі не співпадають",
+				"auth": request.user.is_authenticated,
+				"admin": request.user.is_staff
 			}
 			return render(request, "mainApp/homePage.html", context)	
 		if authenticate(request, username=username, password=password) == None:
 			if User.objects.filter(email=email):
 				context = {
 					"products" : Product.objects.filter(is_featured=1),
-					"message" : "Такий email уже зареєстровано"
+					"message" : "Такий email уже зареєстровано",
+					"auth": request.user.is_authenticated,
+					"admin": request.user.is_staff
 				}
 				return render(request, "mainApp/homePage.html", context)
 			user = User(username=username,first_name=fname, last_name=sname, email=email, password=make_password(password))
 			user.save()
 			profile = Profile(user=user, phone_number=phone)
 			profile.save()
+			login(request, user)
 			context = {
 				"products" : Product.objects.filter(is_featured=1),
-				"message" : "Вас зареєстровано"
+				"message" : "Вас зареєстровано",
+				"auth": request.user.is_authenticated,
+				"admin": request.user.is_staff
 			}
 			return render(request, "mainApp/homePage.html", context)
 		else:
 			context = {
 				"products" : Product.objects.filter(is_featured=1),
-				"message" : "Такий користувач уже зареєстрований"
+				"message" : "Такий користувач уже зареєстрований",
+				"auth": request.user.is_authenticated,
+				"admin": request.user.is_staff
 			}
 			return render(request, "mainApp/homePage.html", context)	
 	else:

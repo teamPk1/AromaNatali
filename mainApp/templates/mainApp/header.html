@@ -54,7 +54,9 @@
   
           
           <li><a href="{% url 'about' %}">Де наc знайти</a></li>
-         <li class="dropdown">
+          
+          {% if not auth %}
+         <li class="dropdown" id="login_form">
             <a href="#" href="log_in.html" class="dropdown-toggle" data-toggle="dropdown" >Вхід <bclass="caret"></b></a>
             <ul class="dropdown-menu">
               <form method="POST" >
@@ -62,15 +64,15 @@
                     <div class="dws-input">
                       <h4>Логін</h4>
                       <h4 style="color: red" id="error"></h4>
-                      <input type="text" name="username" placeholder="Введіть логін">
+                      <input type="text" id="login_username" name="username" placeholder="Введіть логін">
                     </div>
 
                     <div class="dws-input">
                       <h4>Пароль</h4>
-                      <input type="password" name="password" placeholder="Введіть пароль">
+                      <input type="password" id="login_password" name="password" placeholder="Введіть пароль">
                     </div>
                     
-                    <input class="dws-submit" type="button" name="submit" id="submit" value="ВВІЙТИ"><br/>
+                    <input class="dws-submit" type="button" name="submit" id="login_submit" value="ВВІЙТИ"><br/>
                     <div class="logos">
                      <a href="{%  url 'registration' %}">Реєстрація</a>
                       <a href="#">Забули пароль?</a>
@@ -78,8 +80,35 @@
              
               </form>  
             </ul>
+            <script>
+              username =  $("#login_username")
+              password = $("#login_password")
+              $("#login_submit").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                  url: "{% url 'index' %}",
+                  method: "POST",
+                  data: {
+                    username: username.val(),
+                    password: password.val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                  },
+                  "dataType": "json"
+                }).done(function (data) {
+                  if(!data.authentification){
+                    username.attr("style", "border: 1px solid #ff0000")
+                    password.attr("style", "border: 1px solid #ff0000")
+                    alert("Невірний логін або пароль")
+                  }
+                  else{
+                    alert("Ви успішно війшли")
+                    $("#login_form").hide()
+                  }
+              })
+              })
 
-
+            </script> 
+            {% endif %}
 		<li><a href="#"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img">  </a></li>
 		</ul>
       </div>
