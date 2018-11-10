@@ -10,6 +10,9 @@
           {% for product in products %}
           {% if product.gender == gender or product.gender == 2 %}
 			<div class="smallProduct"> <a href="{% url 'product' product.id %}" > <img  src =  "{{ product.image }}"  height="40%" width="50%" alt="картинку вкрали" > 
+			</a>
+				<input type="image" name="" src="https://www.dropbox.com/s/3g8t45ebbyoyf03/kisspng-check-mark-sign-cross-clip-art-delete-button-5ac92e83900895.53113979152313408359.jpg?raw=1" width="10%" height="10%" style="margin-bottom: 18%;">
+
 	<div  class="infa_parfum">  {{ product.name }} </div> <a> 393 грн </a> <br><br><a href="#" class="button7"> купити </a></div>
 		{% endif %}
 		{% endfor %}

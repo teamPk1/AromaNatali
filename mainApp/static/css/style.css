@@ -199,3 +199,20 @@ button.t0 {
 .regImage{
   padding-bottom: 15%;
 }
+.null span {
+    font-family: 'Muli';
+    color: #C0C0C0;
+    font-size: 24px;
+}
+ 
+.wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 19px;
+}
+ 
+.null {
+    position: absolute;
+    right: 0;
+    top: 0
+}

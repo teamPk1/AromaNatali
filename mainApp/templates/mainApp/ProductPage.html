@@ -3,9 +3,43 @@
  {%block content %}
 <div width="70%">
 {% if admin %}
+  <!DOCTYPE html>
+<html>
+<head>
+
+	<title>heder sayt</title>
+	
+	
+</head>
+<body>
+	
+<p><h1 align="center"><font size="6" color="black" > {{ product.name }} <input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="3%" /> </font></h1></p>
+
+<p> <img  src = "{{ product.image }}" align="left"  height="300em" alt="картинку вкрали" > <input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="2%" />  </a></p>
+<br>
 
 
-{% endif %}
+                        <p>{{ product.description }}.<input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="2%" /> </p>
+                  <hr color="black" > </hr><br>
+                   &#160 &#160 <P_r>{{ product.price }} грн </P_r><input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="2%" />  &#160 &#160
+                   <a>товаров є складі</a>  &#160 
+
+
+
+<div class="wrapper"> 
+    <div class="null">
+      <span>{{ product.amount_present }}</span>
+    </div>
+     <i class="fab fa-btc"></i>
+  </div><input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="2%" /> 
+</div>
+
+ 
+
+</body>
+</html>
+
+{% else %}
 <p><h1 align="center"><font size="6" color="black" > {{ product.name }} </font></h1></p>
 
 <p> <img  src = "{{ product.image }}" align="left"  height="300em" alt="картинку вкрали" >  </a></p>
@@ -16,10 +50,12 @@
 
 
       <hr color="black" > </hr><br>
-       &#160 &#160 <P_r>{{ product.price }} грн </P_r>&#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 
-       	<a href="#" class="button7"> купити</a>
+       &#160 &#160 <P_r style="float:left; margin-left: 3%;">{{ product.price }} грн </P_r> &#160 &#160 &#160 &#160 &#160 &#160 &#160 
+       <a>товаров є складі</a> {{ product.amount_present }} &#160 <br><br><br>
+       	<a href="#" class="button7" style="float:left; margin-left:3%;"> купити</a>
        		
 </div>
+{% endif %}
 {% endblock %}
 
 
