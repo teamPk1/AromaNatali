@@ -1,44 +1,77 @@
 {% extends "mainApp/header.html" %}
  {% load static %}
  {%block content %}
-<div width="70%">
 {% if admin %}
-  <!DOCTYPE html>
-<html>
-<head>
 
-	<title>heder sayt</title>
-	
-	
-</head>
-<body>
-	
-<p><h1 align="center"><font size="6" color="black" > {{ product.name }} <input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="3%" /> </font></h1></p>
+<form action="{% url 'edit' %}", method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+<p><h1 align="center"><font size="6" color="black" > <input type="text" name="name" value="{{ product.name }}">  </font></h1></p>
 
-<p> <img  src = "{{ product.image }}" align="left"  height="300em" alt="картинку вкрали" > <input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="2%" />  </a></p>
+<p> <img  src = "{{ product.image }}" align="left" id="product_image_page"  height="300em" alt="картинку вкрали" >
+<input type="file" id="file1" name="image" accept="image/*" capture style="display:none"/>
+<input type="text"  name="id" value="{{ product.id }}" style="display:none"/>
+<img src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" id="upfile1" style="cursor:pointer" / width="2%">
+ <!-- <input type="file" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="2%" />  </a></p> -->
 <br>
 
 
-                        <p>{{ product.description }}.<input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="2%" /> </p>
-                  <hr color="black" > </hr><br>
-                   &#160 &#160 <P_r>{{ product.price }} грн </P_r><input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="2%" />  &#160 &#160
-                   <a>товаров є складі</a>  &#160 
+    <p><textarea type="text" name="description">{{ product.description }}</textarea> </p>
+  <hr color="black" > </hr><br>
+   &#160 &#160 <P_r><input type="number" name="price" value="{{ product.price }}"> грн </P_r> &#160 &#160
+   <a>товаров є складі</a>  &#160 
 
 
 
-<div class="wrapper"> 
-    <div class="null">
-      <span>{{ product.amount_present }}</span>
-    </div>
-     <i class="fab fa-btc"></i>
-  </div><input type="image" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="2%" /> 
-</div>
 
+	<input type="number" name="stock" value="{{ product.amount_present }}" width="1%">
+
+
+	<input type="submit">
  
+</form>
+<script>
+	$(document).ready(function(e) {
 
-</body>
-</html>
 
+        $(".showonhover").click(function(){
+			$("#selectfile").trigger('click');
+		});
+    });
+
+
+var input = document.querySelector('input[type=file]'); // see Example 4
+
+input.onchange = function () {
+  var file = input.files[0];
+  var formData = new FormData()
+  formData.append("fileToUpload", file)
+  var imgURL = URL.createObjectURL(file)
+  console.log(formData.value)
+  console.log(imgURL)
+  $("#product_image_page").attr("src", imgURL)
+   // $.ajax({
+   //    url: "{% url 'edit' %}",
+   //    method: "POST",
+   //    data: {
+   //      img: imgURL,
+   //      product: {{ product.id }},
+   //      csrfmiddlewaretoken: '{{ csrf_token }}'
+   //    },
+   //    "dataType": "json"
+   //  }).done(function (data) {
+   //  	console.log(data)
+   //  })
+};
+
+
+
+$("#upfile1").click(function () {
+    $("#file1").trigger('click');
+});
+
+
+
+</script>
 {% else %}
 <p><h1 align="center"><font size="6" color="black" > {{ product.name }} </font></h1></p>
 

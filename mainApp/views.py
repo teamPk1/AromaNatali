@@ -9,6 +9,14 @@ from django.contrib.auth import *
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
+from PIL import Image
+from django.core.files.storage import FileSystemStorage
+from django.core.files import File
+from django.core.files.temp import NamedTemporaryFile
+import urllib.request
+import dropbox
+
+
 
 def index(request):
 	if request.method == "POST":
@@ -155,3 +163,51 @@ def check_registration(request):
 def logou(request):
 	logout(request)
 	return HttpResponseRedirect(reverse("index"))
+def delete(request):
+	if request.method == "POST":
+		product_id = request.POST["id"]
+		product = Product.objects.get(pk=product_id)
+		product.delete()
+		return JsonResponse({'status': 1})
+	else:
+		return render("mainApp/hacker.html")
+def edit(request):
+	if request.method == "POST":
+		product = Product.objects.get(pk=request.POST["id"])
+		try:		
+			myfile = request.FILES["image"]
+			dbx = dropbox.Dropbox('JMO11L9PvLAAAAAAAAAACeGJKD2QE2UDr-_VpCi0U_RDdMPlp40EJyBBM9-pSjdc')			
+			
+			new_product_name = "/a" + product.image_name
+			dbx.files_upload(File(myfile.open()).read(), new_product_name, mute=True)
+			
+			l = dbx.sharing_create_shared_link_with_settings(new_product_name).url
+			n = ""
+			i = 0
+			while i < len(l):
+				if(l[i] == "?"):
+					break
+				n = n + "" + l[i]
+				i+=1
+			n = n+"?raw=1"
+			product.image = n
+			product.image_name = new_product_name
+			product.save()
+		except:
+			pass
+		new_name = request.POST["name"]
+		new_description = request.POST["description"]
+		new_price = request.POST["price"]
+		new_stock = request.POST["stock"]
+		product.name = new_name
+		product.description = new_description
+		product.price = new_price
+		product.amount_present = new_stock
+		product.save()
+
+
+		return HttpResponseRedirect(reverse("product", args= (product.id, )))
+		# else:
+		# 	return JsonResponse({"status": 0})
+	else:
+		return render("hacker.html")

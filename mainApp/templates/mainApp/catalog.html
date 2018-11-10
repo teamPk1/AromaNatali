@@ -12,7 +12,27 @@
 			<div class="smallProduct"> <a href="{% url 'product' product.id %}" > <img  src =  "{{ product.image }}"  height="40%" width="50%" alt="картинку вкрали" > 
 			</a>
 			{% if admin %}
-				<input type="image" name="" src="https://www.dropbox.com/s/3g8t45ebbyoyf03/kisspng-check-mark-sign-cross-clip-art-delete-button-5ac92e83900895.53113979152313408359.jpg?raw=1" width="10%" height="10%" style="margin-bottom: 18%;">
+				<input type="image" id="delete_btn_{{ product.id }}" src="https://www.dropbox.com/s/3g8t45ebbyoyf03/kisspng-check-mark-sign-cross-clip-art-delete-button-5ac92e83900895.53113979152313408359.jpg?raw=1" width="10%" height="10%" style="margin-bottom: 18%;">
+				<script>
+					$("#delete_btn_{{ product.id }}").click(function (e) {
+						e.preventDefault();
+						confirmation = confirm("Ви дійсно хочете видалити {{ product.name }}?")
+						id = "{{ product.id }}"
+						if (confirmation){
+							$.ajax({
+								method: "POST",
+								url: "{% url 'delete' %}",
+								data: {
+									csrfmiddlewaretoken: '{{ csrf_token }}',
+									id: id
+								}
+							}).done(function (data) {
+			                    alert("Товар видалено")
+			                    location.reload()
+							})
+						}
+					})
+				</script>
 			{% endif %}
 
 	<div  class="infa_parfum">  {{ product.name }} </div> <a> 393 грн </a> <br><br><a href="#" class="button7"> купити </a></div>

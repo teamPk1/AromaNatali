@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 class Product(models.Model):
 	name = models.CharField(max_length = 50)
 	image = models.CharField(max_length = 100) # shared link
+	image_name = models.CharField(max_length = 100)
 	description = models.TextField()
 	brand = models.CharField(max_length = 50)
 	gender = models.IntegerField(default = -1) # 0 men 1 woman 2 both
