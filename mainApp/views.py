@@ -29,8 +29,9 @@ def index(request):
 			login(request, user)
 			return JsonResponse({"authentification": 1})
 	else:
+		featured = Product.objects.filter(is_featured=1)
 		context = {
-			"products" : Product.objects.filter(is_featured=1),
+			"products" : featured,
 			"message" : "",
 			"auth": request.user.is_authenticated,
 			"admin": request.user.is_staff,
@@ -50,7 +51,7 @@ def product(request, product_id):
 	return render(request,'mainApp/ProductPage.html', context)
 def menu(request, gender):
 	context = {
-		"products" : Product.objects.all(),
+		"products" : Product.objects.filter(is_transit = 0),
 		"auth": request.user.is_authenticated,
 		"admin": request.user.is_staff,
 		"gender": gender
@@ -171,6 +172,17 @@ def delete(request):
 		return JsonResponse({'status': 1})
 	else:
 		return render("mainApp/hacker.html")
+def add(request):
+	if request.method == "GET":
+		product = Product(name="Вставте ім'я", image="0", image_name="1"+str(Product.objects.latest('id').id), description="Додайте опис", gender=-1, price=0, amount_present=0, is_featured=0)
+		product.save()
+		context = {
+			"product" : product,
+			"auth": request.user.is_authenticated,
+			"admin": request.user.is_staff
+		}
+		return render(request,'mainApp/ProductPage.html', context)
+		
 def edit(request):
 	if request.method == "POST":
 		product = Product.objects.get(pk=request.POST["id"])
@@ -203,11 +215,23 @@ def edit(request):
 		product.description = new_description
 		product.price = new_price
 		product.amount_present = new_stock
+		product.gender = request.POST["gender"]
+		product.is_transit = 0
+		if request.POST["featured"] == "on":
+			product.is_featured = 1
+		else:
+			product.is_featured = 0
 		product.save()
-
+		Product.objects.filter(is_transit=1).all().delete()
 
 		return HttpResponseRedirect(reverse("product", args= (product.id, )))
 		# else:
 		# 	return JsonResponse({"status": 0})
 	else:
 		return render("hacker.html")
+def unfeature(request):
+	if request.method == "POST":
+		p = Product.objects.get(pk=request.POST["product_id"])
+		p.is_featured = 0
+		p.save()
+		return JsonResponse({"status": "ok"})

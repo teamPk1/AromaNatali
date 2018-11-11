@@ -24,9 +24,14 @@
 
 
 	<input type="number" name="stock" value="{{ product.amount_present }}" width="1%">
-
-
-	<input type="submit">
+	Для кого
+	<select name="gender">
+		<option value="0">Чоловіків</option>
+		<option value="1">Жінок</option>
+		<option value="2">Унісекс</option>
+	</select><br>
+  Відображатиметься на головній сторінці? <input type="checkbox" name="featured"  {% if product.is_featured == 1 %}checked{% endif %}>
+	<br><br>
  
 </form>
 <script>
@@ -49,18 +54,7 @@ input.onchange = function () {
   console.log(formData.value)
   console.log(imgURL)
   $("#product_image_page").attr("src", imgURL)
-   // $.ajax({
-   //    url: "{% url 'edit' %}",
-   //    method: "POST",
-   //    data: {
-   //      img: imgURL,
-   //      product: {{ product.id }},
-   //      csrfmiddlewaretoken: '{{ csrf_token }}'
-   //    },
-   //    "dataType": "json"
-   //  }).done(function (data) {
-   //  	console.log(data)
-   //  })
+
 };
 
 

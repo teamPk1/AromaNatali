@@ -15,9 +15,26 @@
       <div class='product'> 
       	<a href="{% url 'product' product.id %}" width="50%"> <img  src=" {{ product.image }}" width="50%" height="50%" alt="parfum" > </a>
 		{% if admin %}
-		
-      	<input type="image" class="regImage" src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" width="10%" /> 
-
+		  
+      	<input type="image" class="regImage" id="unfeature" src="https://www.dropbox.com/s/3g8t45ebbyoyf03/kisspng-check-mark-sign-cross-clip-art-delete-button-5ac92e83900895.53113979152313408359.jpg?raw=1" width="10%" /> 
+      <script>
+        $("#unfeature").click(function (e) {
+          e.preventDefault();
+          conf = confirm("Ви дійсно хочете забрати цей товар з головної сторінки?")
+          if (conf){
+          $.ajax({
+            method: "POST",
+            url: "{% url 'unfeature' %}",
+            data: {
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+              product_id: {{ product.id }}
+            }
+          }).done(function (data) {
+            location.reload()
+          })
+        }
+        })
+      </script>
  		{% endif %}
   <div class="infa_parfum" >{{ product.name }} </div>
    <a> {{ product.price }} грн </a> <a href="{% url 'product' product.id %}"> <p><input type="button"  value=" Більше->"></p></a><br><br></div>

@@ -14,6 +14,8 @@ urlpatterns = [
     path("logou", views.logou, name="logout"),
     path("delete", views.delete, name="delete"),
     path("edit", views.edit, name="edit"),
+    path("add", views.add, name="add"),
+    path("unfeature", views.unfeature, name="unfeature"),
     path("reset-password", PasswordResetView.as_view(template_name="mainApp/registration/password_reset_form.html"), name="reset_password"),
     path("reset-password/done", PasswordResetDoneView.as_view(template_name="mainApp/registration/password_reset_done.html"), name="password_reset_done"),
     path("reset/<uidb64>/<token>/", PasswordResetConfirmView.as_view(template_name="mainApp/registration/password_reset_confirm.html"), name="password_reset_confirm"),

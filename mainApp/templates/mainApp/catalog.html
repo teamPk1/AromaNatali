@@ -6,9 +6,10 @@
 
 	
 	<div class="context">
-			<div align= "center" ><button class="t0"  >добавити товар</button></div>
+			<div align= "center" ><a href="{% url 'add' %}"><button class="t0"  >добавити товар</button></a></div>
           {% for product in products %}
           {% if product.gender == gender or product.gender == 2 %}
+          
 			<div class="smallProduct"> <a href="{% url 'product' product.id %}" > <img  src =  "{{ product.image }}"  height="40%" width="50%" alt="картинку вкрали" > 
 			</a>
 			{% if admin %}

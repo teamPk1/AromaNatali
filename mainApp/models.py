@@ -12,6 +12,7 @@ class Product(models.Model):
 	price = models.DecimalField(max_digits = 6, decimal_places = 2)
 	amount_present = models.IntegerField(default = 0)
 	is_featured = models.IntegerField(default = 0)
+	is_transit = models.IntegerField(default = 1) # is in procces of creation 1 yes 0 no
 
 	def __str__(self):
 		return self.name
