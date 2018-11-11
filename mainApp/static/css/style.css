@@ -220,3 +220,82 @@ button.t0 {
   width:30%;
   height: 5%;
 }
+.table{
+  width:1050px;
+  height: 600px;
+  background-color: #E6E6FA;
+  margin: 90px auto 0 auto;
+  text-align: center;
+}
+
+.basket_png{
+  margin: 20px 930px -45px 0;
+}
+
+.table a{
+  margin: 10px 730px 12px 0;
+  font-size: 25px;
+}
+
+.shopping_go_on{
+  margin: -29px -650px 0 0;
+  font-size: 25px;
+}
+
+.basket_foto{
+  margin: 10px 710px 0 0;
+}
+
+.line1{
+  margin: 25px 0 0 0;
+}
+
+.line2{
+  margin: 240px 0 0 0;
+}
+
+h2{
+  margin: 10px 720px 12px 0;
+}
+
+.kilkist{
+  margin: -245px -120px 0 0;
+  font-size: 25px;
+}
+
+.price{
+  margin: -25px -550px 0 0;
+  font-size: 25px;
+}
+
+.do_oplaty{
+  margin: 10px 400px 12px 0;
+  font-size: 30px;
+}
+
+.price2{
+  margin: -45px -300px 0 0;
+  font-size: 30px;
+}
+ 
+.dws-input input:hover{
+  box-shadow: 0 0 6px 3px #000000;
+}
+
+.dws-basket{  
+  padding: 10px 25px;
+  margin: 15px 40px 44PX 0;
+  font-size: 20px;
+  color: #fff;
+  background-color: #000000;
+  border: none;
+  border-top: 4px solid #000000;
+  border-bottom: 4px solid #000000;
+  border-radius: 14%;
+}
+
+.dws-basket:hover{
+  transition: all 0.5s;
+  background: #fff;
+  color: #2c536c;
+}

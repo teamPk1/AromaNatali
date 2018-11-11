@@ -20,6 +20,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="{% static 'js/easing.js' %}"></script>
   <script src="{% static 'js/jquery.ui.totop.min.js' %}"></script>
+  <!-- Jquery UI -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <!-- basic styling just for this demo -->
   <style type="text/css" media="screen">
@@ -113,7 +117,55 @@
 
             </script> 
             {% endif %}
-		<li><a href="#"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img">  </a></li>
+		<li><a href="#" id="opener"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img">  </a></li>
+      <script>
+  $( function() {
+    var wWidth = $(window).width();  // window width
+    var wHeight = $(window).height(); //  window height
+    var dWidth = wWidth * 0.8;  // dialog width 80% of window size
+    var dHeight = wHeight * 0.8;
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      minWidth: dWidth,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+    $( "#opener" ).on( "click", function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  } );
+  </script>
+ 
+<div id="dialog" title="Basic dialog">
+    <div class="table">
+      <a>Корзина</a>
+
+      <div class="shopping_go_on">Продовжити покупки</div>
+
+
+    <hr  size="3" color="#000000" class="line1"><br/></hr>
+
+    <h2>Chanel Chance</h2>
+      <a><img  src="популярні парфуми фото/1.jpg" align= "center"  width="30%" alt="parfum" class="basket_foto"> </a>
+    <div class="kilkist">1 шт.</div>
+    <div class="price">2028 грн</div>
+
+    <hr  size="3" color="#000000" class="line2"><br/></hr>
+
+    <div class="do_oplaty">До оплати</div>
+
+    <div class="price2">2028 грн</div>
+
+    <input class="dws-basket" type="submit" name="submit" value="~> Оформити заказ">
+    </div>
+</div>
     {% if auth %}
     <li><a id="logout" href="{% url 'logout' %}">Вийти</a></li>
     {% endif %}
