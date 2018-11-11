@@ -7,7 +7,6 @@ class Product(models.Model):
 	image = models.CharField(max_length = 100) # shared link
 	image_name = models.CharField(max_length = 100)
 	description = models.TextField()
-	brand = models.CharField(max_length = 50)
 	gender = models.IntegerField(default = -1) # 0 men 1 woman 2 both
 	price = models.DecimalField(max_digits = 6, decimal_places = 2)
 	amount_present = models.IntegerField(default = 0)

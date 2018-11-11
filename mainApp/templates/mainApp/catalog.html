@@ -6,7 +6,9 @@
 
 	
 	<div class="context">
+		{% if admin %}
 			<div align= "center" ><a href="{% url 'add' %}"><button class="t0"  >добавити товар</button></a></div>
+			{% endif %}
           {% for product in products %}
           {% if product.gender == gender or product.gender == 2 %}
           
