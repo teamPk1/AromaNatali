@@ -173,8 +173,12 @@ def delete(request):
 		return render("mainApp/hacker.html")
 def add(request):
 	if request.method == "GET":
-		product = Product(name="Вставте ім'я", image="0", image_name="1"+str(Product.objects.latest('id').id), description="Додайте опис", gender=-1, price=0, amount_present=0, is_featured=0)
-		product.save()
+		try:
+			product = Product(name="Вставте ім'я", image="0", image_name="1"+str(Product.objects.latest('id').id), description="Додайте опис", gender=-1, price=0, amount_present=0, is_featured=0)
+			product.save()
+		except Product.DoesNotExist:
+			product = Product(name="Вставте ім'я", image="0", image_name="1"+str("0"), description="Додайте опис", gender=-1, price=0, amount_present=0, is_featured=0)
+			product.save()
 		context = {
 			"product" : product,
 			"auth": request.user.is_authenticated,
@@ -216,9 +220,10 @@ def edit(request):
 		product.amount_present = new_stock
 		product.gender = request.POST["gender"]
 		product.is_transit = 0
-		if request.POST["featured"] == "on":
+		try:
+			a = request.POST["featured"]
 			product.is_featured = 1
-		else:
+		except:
 			product.is_featured = 0
 		product.save()
 		Product.objects.filter(is_transit=1).all().delete()
