@@ -9,7 +9,6 @@ from django.contrib.auth import *
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
-from PIL import Image
 from django.core.files.storage import FileSystemStorage
 from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
