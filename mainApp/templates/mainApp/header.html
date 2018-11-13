@@ -117,7 +117,7 @@
 
             </script> 
             {% endif %}
-		<li><a href="#" id="opener"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img">  </a></li>
+		<li><a href="#" id="opener"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img"> <sub id="basket_number">0</sub> </a></li>
       <script>
   $( function() {
     var wWidth = $(window).width();  // window width
@@ -140,19 +140,45 @@
     $( "#opener" ).on( "click", function() {
       $( "#dialog" ).dialog( "open" );
     });
-  } );
+
+    $("#opener").click(function () {
+      $.ajax({
+        method: "POST",
+        url: "{% url 'get_products' %}",
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+        }
+    }).done(function (data) {
+      console.log(data)
+      general_amount = 0;
+      general_price = 0;
+      $.each(data, function () {
+        general_amount+= this.amount_in_basket;
+        general_price+= this.price;
+      }) 
+        
+      $("#price2").text(general_price);
+      $("")
+    })
+    })
+  });
   </script>
  
 <div id="dialog" title="Basic dialog">
     <div class="table">
       <a>Корзина</a>
 
-      <div class="shopping_go_on">Продовжити покупки</div>
 
 
     <hr  size="3" color="#000000" class="line1"><br/></hr>
 
     <h2>Chanel Chance</h2>
+      <a><img  src="популярні парфуми фото/1.jpg" align= "center"  width="30%" alt="parfum" class="basket_foto"> </a>
+    <div class="kilkist">1 шт.</div>
+    <div class="price">2028 грн</div>
+
+    <hr  size="3" color="#000000" class="line2"><br/></hr>
+        <h2>Chanel Chance</h2>
       <a><img  src="популярні парфуми фото/1.jpg" align= "center"  width="30%" alt="parfum" class="basket_foto"> </a>
     <div class="kilkist">1 шт.</div>
     <div class="price">2028 грн</div>

@@ -9,7 +9,7 @@ class Product(models.Model):
 	description = models.TextField()
 	gender = models.IntegerField(default = -1) # 0 men 1 woman 2 both
 	price = models.DecimalField(max_digits = 6, decimal_places = 2)
-	amount_present = models.IntegerField(default = 0)
+	amount_in_basket = models.IntegerField(default = 0) 
 	is_featured = models.IntegerField(default = 0)
 	is_transit = models.IntegerField(default = 1) # is in procces of creation 1 yes 0 no
 

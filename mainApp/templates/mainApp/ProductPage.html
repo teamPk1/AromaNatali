@@ -7,7 +7,7 @@
 	{% csrf_token %}
 <p><h1 align="center"><font size="6" color="black" > <input type="text" name="name" value="{{ product.name }}">  </font></h1></p>
 
-<p> <img  src = "{{ product.image }}" align="left" id="product_image_page"  height="300em" alt="картинку вкрали" >
+<img  src = "{{ product.image }}" align="left" id="product_image_page"  alt="картинку вкрали" >
 <input type="file" id="file1" name="image" accept="image/*" capture style="display:none"/>
 <input type="text"  name="id" value="{{ product.id }}" style="display:none"/>
 <img src="https://www.dropbox.com/s/papt31v7vtq4j0b/editBtn.jpg?raw=1" id="upfile1" style="cursor:pointer" / width="2%">
@@ -18,7 +18,6 @@
     <p><textarea type="text" name="description">{{ product.description }}</textarea> </p>
   <hr color="black" > </hr><br>
    &#160 &#160 <P_r><input type="number" name="price" value="{{ product.price }}"> грн </P_r> &#160 &#160
-   <a>товаров є складі</a>  &#160 
 
 
 
@@ -78,7 +77,6 @@ $("#upfile1").click(function () {
 
       <hr color="black" > </hr><br>
        &#160 &#160 <P_r style="float:left; margin-left: 3%;">{{ product.price }} грн </P_r> &#160 &#160 &#160 &#160 &#160 &#160 &#160 
-       <a>товаров є складі</a> {{ product.amount_present }} &#160 <br><br><br>
        	<a href="#" class="button7" style="float:left; margin-left:3%;"> купити</a>
        		
 </div>

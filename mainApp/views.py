@@ -213,11 +213,9 @@ def edit(request):
 		new_name = request.POST["name"]
 		new_description = request.POST["description"]
 		new_price = request.POST["price"]
-		new_stock = request.POST["stock"]
 		product.name = new_name
 		product.description = new_description
 		product.price = new_price
-		product.amount_present = new_stock
 		product.gender = request.POST["gender"]
 		product.is_transit = 0
 		try:
@@ -229,8 +227,6 @@ def edit(request):
 		Product.objects.filter(is_transit=1).all().delete()
 
 		return HttpResponseRedirect(reverse("product", args= (product.id, )))
-		# else:
-		# 	return JsonResponse({"status": 0})
 	else:
 		return render("hacker.html")
 def unfeature(request):
@@ -239,3 +235,34 @@ def unfeature(request):
 		p.is_featured = 0
 		p.save()
 		return JsonResponse({"status": "ok"})
+def add_to_basket(request):
+	if request.method == "POST":
+		id = request.POST["id"]
+		product = Product.objects.get(pk=id)
+		l = [product.id]
+		try:
+			request.session["basket"]
+		except:
+			request.session["basket"] = []
+		if l[0] not in request.session["basket"]:
+			request.session["basket"] += l
+		print(request.session["basket"])
+		return JsonResponse({"amount": len(request.session["basket"])})
+
+def get_products(request):
+	if request.method == "POST":
+		try:
+			request.session["basket"]
+		except:
+			return JsonResponse({})
+		objects = {}
+		i = 0
+		for product_id in request.session["basket"]:
+			product = Product.objects.get(pk=product_id)
+			objects[i] = {}
+			objects[i]["image"] = product.image
+			objects[i]["name"] = product.name
+			objects[i]["price"] = product.price
+			objects[i]["amount_in_basket"] = product.amount_in_basket
+			i+=1
+		return JsonResponse(objects)

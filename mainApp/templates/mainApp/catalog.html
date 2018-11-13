@@ -38,7 +38,31 @@
 				</script>
 			{% endif %}
 
-	<div  class="infa_parfum">  {{ product.name }} </div> <a> 393 грн </a> <br><br><a href="#" class="button7"> купити </a></div>
+	<div  class="infa_parfum">  {{ product.name }} </div> <a> 393 грн </a> <br><br>
+	{% if admin is not True %}
+	<a href="#" class="button7" id="buy_btn_{{ product.id }}"> купити </a></div>
+	<script>
+		$("#buy_btn_{{ product.id }}").click(function (e) {
+			e.preventDefault()
+			id = "{{ product.id }}"
+			$.ajax({
+				method: "POST",
+				url: "{% url 'add_to_basket' %}",
+				data: {
+					csrfmiddlewaretoken: '{{ csrf_token }}',
+					id: id
+				}
+			}).done(function (data) {
+				if(data.amount){
+					$("#basket_number").html(data.amount)
+				}
+			})
+		})
+		
+
+
+	</script>
+	{% endif %}
 		{% endif %}
 		{% endfor %}
 			
