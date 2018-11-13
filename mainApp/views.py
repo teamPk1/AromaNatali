@@ -21,6 +21,7 @@ def index(request):
 	if request.method == "POST":
 		username = request.POST["username"]
 		password = request.POST["password"]
+		username = username.upper()
 		user = authenticate(request, username=username, password=password)
 		if not user:
 			return JsonResponse({"authentification": 0})

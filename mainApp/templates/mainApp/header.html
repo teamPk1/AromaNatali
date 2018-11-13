@@ -21,7 +21,7 @@
   <script src="{% static 'js/easing.js' %}"></script>
   <script src="{% static 'js/jquery.ui.totop.min.js' %}"></script>
   <!-- Jquery UI -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
@@ -49,18 +49,17 @@
         <style>
 
         </style>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse" >
         <ul class="nav navbar-nav">
         	<li class="dropdown">
-            <a href="{% url 'menu' 2 %}" class="dropbtn">Товари <b class="caret"></b></a>
-            <ul class="dropdown-content" class="dropdown-menu">
+            <a href="{% url 'menu' 2 %}" class="dropbtn" id="hover_product">Товари <b class="caret"></b></a>
+            <ul class="dropdown-content" class="dropdown-menu" id="collapse_products">
               <a href="{% url 'menu' 1 %}">Жіночі парфуми</a><br>
               <a href="{% url 'menu' 0 %}" >Чоловічі парфуми</a>
               
             </ul>
           </li>
   
-          
           <li><a href="{% url 'about' %}">Де наc знайти</a></li>
           
           {% if not auth %}
@@ -153,7 +152,7 @@
     <hr  size="3" color="#000000" class="line1"><br/></hr>
 
     <h2>Chanel Chance</h2>
-      <a><img  src="популярні парфуми фото/1.jpg" align= "center"  width="30%" alt="parfum" class="basket_foto"> </a>
+      <a><img  src="" align= "center"  width="30%" alt="parfum" class="basket_foto"> </a>
     <div class="kilkist">1 шт.</div>
     <div class="price">2028 грн</div>
 
