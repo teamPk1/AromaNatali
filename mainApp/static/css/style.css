@@ -193,7 +193,8 @@ button.t0 {
 
 .dropdown-content {
     display: none;
-}
+}   
+ /*------------------------------------------------------------------------------*/
 .dropdown:hover .dropdown-content {display: block;}
 
 .regImage{
