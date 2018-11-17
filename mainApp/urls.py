@@ -20,6 +20,7 @@ urlpatterns = [
     path("add_to_basket", views.add_to_basket, name="add_to_basket"),
     path("change_amount", views.change_amount, name="change_amount"),
     path("checkout", views.checkout, name="checkout"),
+    path("delete_from_cart", views.delete_from_cart, name="delete_from_cart"),
     path("send_products", views.send_products, name="send_products"),
     path("reset-password", PasswordResetView.as_view(template_name="mainApp/registration/password_reset_form.html"), name="reset_password"),
     path("reset-password/done", PasswordResetDoneView.as_view(template_name="mainApp/registration/password_reset_done.html"), name="password_reset_done"),

@@ -22,6 +22,7 @@ def index(request):
 		username = request.POST["username"]
 		password = request.POST["password"]
 		username = username
+		username = username.lower()
 		user = authenticate(request, username=username, password=password)
 		if not user:
 			return JsonResponse({"authentification": 0})
@@ -89,6 +90,7 @@ def registration(request):
 		password2 = request.POST["password1"]
 		username = request.POST["username"]
 		username = username
+		username = username.lower()
 		email = email
 		if username =="" or password == "" or phone == "" or email == "" or sname == "" or fname == "":
 			context = {
@@ -145,6 +147,7 @@ def check_registration(request):
 		username = request.POST["username"]
 		email = request.POST["email"]
 		username = username
+		username = username.lower()
 		email = email
 		if User.objects.filter(email=email):
 			return JsonResponse({
@@ -344,4 +347,27 @@ def send_products(request):
 			"auth": request.user.is_authenticated,
 			"admin": request.user.is_staff,
 		}
+		request.session["basket"] = []
+		request.session["amount"] = []
 		return render(request,'mainApp/homePage.html', context)
+def delete_from_cart(request):
+	if request.method == "POST":
+		p_id = request.POST["id"]
+		iterator = 0
+		print(request.session["basket"])
+		print(type(request.session["basket"][0]))
+		print(p_id)
+		print(type(p_id))
+		request.session["basket"].remove(int(p_id))
+		print(request.session["basket"])
+		for i in request.session["amount"]:
+			if i[1] == int(p_id):
+				print(request.session["amount"][iterator])
+				del request.session["amount"][iterator]
+				print(request.session["amount"][iterator])
+				break
+			iterator += 1
+		print(request.session["basket"])
+		print(request.session["amount"])
+		request.session.modified = True
+		return JsonResponse({"status": "ok"})
