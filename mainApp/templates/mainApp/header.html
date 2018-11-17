@@ -9,9 +9,14 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+	
+
+
   {% load static %}
- 	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
   <link rel="stylesheet" href="{% static 'css/log_in_style.css'%}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/bas.css' %}" type="text/css">
 	<!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="{% static 'js/easing.js' %}"></script>
@@ -142,28 +147,52 @@
   </script>
  
 <div id="dialog" title="Basic dialog">
-    <div class="table">
-      <a>Корзина</a>
+<div class="table1">
+    <a>Корзина</a>
+    <div class="name1">Назва:</div>
+    <div class="price1">Ціна:</div>
+    <div class="kilkist1">Кількість:</div>
+    <div class="suma1">Сума:</div> 
+      
+      <a><img  src="https://u.makeup.com.ua/e/ei/eiefajmhypzf.jpg" width="160px" alt="parfum" class="foto1"> </a>
 
-      <div class="shopping_go_on">Продовжити покупки</div>
+      <div class="name_buy1">Парфюм Chanel Chance 
 
+      <div class="price_buy1">2028 грн
 
-    <hr  size="3" color="#000000" class="line1"><br/></hr>
+      <input class="num1" type="number" value="1" min="1" max="100">
+  
+      <div class="suma_buy1">2028 грн
 
-    <h2>Chanel Chance</h2>
-      <a><img  src="" align= "center"  width="30%" alt="parfum" class="basket_foto"> </a>
-    <div class="kilkist">1 шт.</div>
-    <div class="price">2028 грн</div>
+      <div class="X1">
 
-    <hr  size="3" color="#000000" class="line2"><br/></hr>
+      <a><img  src="https://steamuserimages-a.akamaihd.net/ugc/892140497684987363/C59D7710C43F385DCCE13661F92707019C326EC2/" width="18px"  class="foto1"> </a>
 
-    <div class="do_oplaty">До оплати</div>
+      <hr  size="2" color="#C0C0C0" class="line1"><br/></hr>
+      </div></div></div></div>
+      
+  <a><img  src="https://u.makeup.com.ua/e/ei/eiefajmhypzf.jpg" width="160px" alt="parfum" class="foto1"> </a>
 
-    <div class="price2">2028 грн</div>
+      <div class="name_buy1">Парфюм Chanel Chance 
 
-    <input class="dws-basket" type="submit" name="submit" value="~> Оформити заказ">
-    </div>
-</div>
+      <div class="price_buy1">2028 грн
+
+      <input class="num1" type="number" value="1" min="1" max="100">
+  
+      <div class="suma_buy1">2028 грн
+
+      <div class="X1">
+
+      <a><img  src="https://steamuserimages-a.akamaihd.net/ugc/892140497684987363/C59D7710C43F385DCCE13661F92707019C326EC2/" width="18px"  class="foto1"> </a>
+
+      <input class="dw-basket1" type="submit" name="submit" value="Оформити заказ">
+      <div class="itog1"><b>Всього:
+      <div class="all1">8112 грн</b></div>
+      </div>
+  </div>
+      
+  </div>
+
     {% if auth %}
     <li><a id="logout" href="{% url 'logout' %}">Вийти</a></li>
     {% endif %}

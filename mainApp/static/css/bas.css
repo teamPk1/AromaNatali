@@ -1,0 +1,83 @@
+
+.table1 a{
+  margin: 0 0 0 20px;
+  font-size: 29px;
+}
+
+.name1{
+  margin: 0  0 0 150px;
+  font-size: 20px;
+}
+
+.price1{
+  margin: -22px 0 0 410px;
+  font-size: 20px;
+}
+
+.kilkist1{
+  margin: -22px 0 0 565px;
+  font-size: 20px;
+}
+
+.suma1{
+  margin: -22px 0 0 735px;
+  font-size: 20px;
+}
+
+.bay1{
+  margin: -22px 0 0 20px;
+  font-size: 20px;
+}
+
+.line1{
+  margin: 62px 22px 22px -900px;
+}
+
+.foto1{
+  margin: 9px 0 0 0;
+}
+
+.name_buy1{
+  margin: -79px 0 0 195px;
+  font-size: 18px;
+}
+
+.price_buy1{
+  margin: -22px 0 0 225px;
+  font-size: 18px;
+}
+
+.num1{
+  margin: 0 0 0 90px;
+  font-size: 18px;
+}
+
+.suma_buy1{
+  margin: -22px 0 0 320px;
+  font-size: 18px;
+}
+
+.X1{
+  margin: -49px 0 0 160px;
+}
+
+.dw-basket1:hover{
+  transition: all 0.5s;
+  background: #fff;
+  color: #2c536c;
+}
+
+.dw-basket1{
+  margin: -22px 0 25px 150px;
+  font-size: 18px;
+}
+
+.itog1{
+  margin: -52px 0 22px 542px;
+  font-size: 22px;
+}
+
+.all1{
+  margin: -23px 0 22px 222px;
+  font-size: 22px;
+}
