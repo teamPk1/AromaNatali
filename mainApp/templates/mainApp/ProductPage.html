@@ -77,8 +77,24 @@ $("#upfile1").click(function () {
 
       <hr color="black" > </hr><br>
        &#160 &#160 <P_r style="float:left; margin-left: 3%;">{{ product.price }} грн </P_r> &#160 &#160 &#160 &#160 &#160 &#160 &#160 
-       	<a href="#" class="button7" style="float:left; margin-left:3%;"> купити</a>
-       		
+       	<a href="#" id="buy_btn_product_page" class="button7" style="float:left; margin-left:3%;"> купити</a>
+  <script>
+    $("#buy_btn_product_page").click(function (e) {
+      e.preventDefault()
+      id = "{{ product.id }}"
+      $.ajax({
+        method: "POST",
+        url: "{% url 'add_to_basket' %}",
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          id: id
+        }
+      })
+    })
+    
+
+
+  </script>
 </div>
 {% endif %}
 {% endblock %}

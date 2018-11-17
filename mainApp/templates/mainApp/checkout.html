@@ -1,0 +1,76 @@
+{% extends "mainApp/header.html" %}
+ {% load static %}
+ {%block content %}
+	<form action="{% url 'send_products' %}" id="checkout_form" method="GET" style="margin-left: 3%;">
+		{% if auth%}
+		Ваш Email<br>
+		<input type="text" placeholder="Email" name="email" value="{{ user.user.email }}"> <br><br>
+		Ваше Ім'я<br>
+		<input type="text" placeholder="Ім'я" name="first_name" value="{{ user.user.first_name }}"><br><br>
+		Ваша амілія<br>
+		<input type="text" placeholder="Фамілія" name="last_name" value="{{ user.user.last_name }}"><br><br>
+		Ваш Телефон<br>
+		<input type="text" placeholder="Телефон" name="phone" value="{{ user.phone_number }}"><br><br>
+		{% else %}
+		Ваш Email<br>
+		<input type="text" placeholder="Email" name="email" > <br><br>
+		Ваше Ім'я<br>
+		<input type="text" placeholder="Ім'я" name="first_name"><br><br>
+		Ваша Фамілія<br>
+		<input type="text" placeholder="Фамілія" name="last_name" ><br><br>
+		Ваш Телефон<br>
+		<input type="tel"  id="phone_c" name="phone" ><br><br>
+		{% endif %}
+		<input type="submit" id="proceed">
+	<script type="text/javascript">
+			var input = document.querySelector("#phone_c");
+			error = false
+			p = window.intlTelInput(input, {
+			  utilsScript: "{% static 'intl-tel-input/build/js/utils.js?1537727621611' %}" 
+			});
+			$("#proceed").click(function (e) {
+				e.preventDefault()
+				phone = $("#phone_c").val()
+				first_name = $("input[name=first_name]").val()
+				email = $("input[name=email]").val()
+				last_name = $("input[name=last_name]").val()
+ 				if(!p.isValidNumber() || !phone){
+					$("#phone_c").attr("style", "border: 1px solid #ff0000")
+					$("#phone_c").attr("placeholder", "Введіть вірний номер телефону")
+					error = true
+				}
+				else{
+					error = false
+				}
+				if(!email){
+					error = true
+					$("input[name=email]").attr("style", "border: 1px solid #ff0000")
+					$("input[name=email]").attr("placeholder", "Потрібно ввести email")
+				}
+				else{
+					error = false
+				}
+				if(!first_name){
+					error = true
+					$("input[name=first_name]").attr("style", "border: 1px solid #ff0000")
+					$("input[name=first_name]").attr("placeholder", "Потрібно ввести ім'я")
+				}
+				else{
+					error = false
+				}
+				if(!last_name){
+					error = true
+					$("input[name=last_name]").attr("style", "border: 1px solid #ff0000")
+					$("input[name=last_name]").attr("placeholder", "Потрібно ввести Фамілію")				
+				}
+				else{
+					error = false
+				}
+				if(!error){
+					$("#checkout_form").submit();
+				}
+			})
+
+ 	</script>
+	</form>
+ {%endblock%}

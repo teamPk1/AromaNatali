@@ -1,7 +1,7 @@
  <!DOCTYPE html>
  <html>
  <head>
- 	<title></title>
+ 	<title>Aroma natali</title>
  	{%  load staticfiles %}
  	 <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -9,9 +9,15 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+	
+  <link rel="stylesheet" href="{%  static 'intl-tel-input/build/css/intlTelInput.css' %}" type="text/css">
+
+
   {% load static %}
- 	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
   <link rel="stylesheet" href="{% static 'css/log_in_style.css'%}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/bas.css' %}" type="text/css">
 	<!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="{% static 'js/easing.js' %}"></script>
@@ -22,7 +28,8 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+  <script src="{% static 'intl-tel-input/build/js/intlTelInput.js' %}"></script>
+  <script src="{% static 'intl-tel-input/build/js/utils.js' %}"></script>
 </head>
 <!-- basic styling just for this demo -->
   <style type="text/css" media="screen">
@@ -108,14 +115,14 @@
                   }
                   else{
                     alert("Ви успішно війшли")
-                    location.reload()
+                    location.replace("{% url 'index' %}")
                   }
               })
               })
 
             </script> 
             {% endif %}
-		<li><a href="#" id="opener"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img"> <sub id="basket_number">0</sub> </a></li>
+		<li><a href="#" id="opener"><img src=" https://www.dropbox.com/s/5hg0x9a8xbw1zsn/basketTransperent.png?raw=1" width="50" alt="parfum" class="img"> </a></li>
       <script>
   $( function() {
     var wWidth = $(window).width();  // window width
@@ -148,48 +155,69 @@
         }
     }).done(function (data) {
       console.log(data)
-      general_amount = 0;
-      general_price = 0;
       $.each(data, function () {
-        general_amount+= this.amount_in_basket;
-        general_price+= this.price;
-      }) 
+        $(".products_inside_cart").append("<a><img  src='"+ this.image +"' width='160px' alt='parfum' class='foto1'> </a> <div class='name_buy1'>"+this.name+"  <div class='price_buy1'>"+this.price+" грн <input class='num1' id='value_"+this.id+"' type='number' value='"+this.amount_in_basket+"' min='1' max='100'> <div class='suma_buy1'>"+ (this.price * this.amount_in_basket) +" грн <div class='X1'> <a><img  src='https://steamuserimages-a.akamaihd.net/ugc/892140497684987363/C59D7710C43F385DCCE13661F92707019C326EC2/' width='18px'  class='foto1'> </a> <hr  size='2' color='#C0C0C0' class='line1'><br/></hr></div></div></div></div>")
+
+       
+          var script = document.createElement("script");
+          script.innerHTML = "$('#value_"+this.id+"').change(function(){value = $('#value_"+this.id+"').val();$.ajax({method:'POST',url: '{% url 'change_amount' %}',data: {proudct_id: "+this.id+",amount:value, csrfmiddlewaretoken: '{{ csrf_token }}'}}).done(function (data) {$('#value_"+this.id+"').attr('value', data.new_amount) });})"
+          $(".products_inside_cart").append(script)
+
+      })
         
-      $("#price2").text(general_price);
-      $("")
+      $(".sum_basket").append(" <input class='dw-basket1' type='submit' name='submit' value='Оформити заказ'>")
+      $(".dw-basket1").click(function () {
+          general_price = 0
+            $.ajax({
+              method: "POST",
+              url: "{% url 'get_products' %}",
+              data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+              }
+          }).done(function (data) {
+            $.each(data, function () {
+              general_price += this.price*this.amount_in_basket;
+            })
+            confirmation = confirm("Сума: " + general_price + "грн. Хочете оформити заказ?")
+            if(confirmation){
+              location.replace("{% url 'checkout' %}")
+            }
+          })
+        })
     })
     })
   });
   </script>
  
-<div id="dialog" title="Basic dialog">
-    <div class="table">
-      <a>Корзина</a>
+<div id="dialog" title="Корзина">
+<div class="table1">
+    <a>Корзина</a>
+    <div class="name1">Назва:</div>
+    <div class="price1">Ціна:</div>
+    <div class="kilkist1">Кількість:</div>
+    <div class="suma1">Сума:</div> 
+      
+  <script>
+    
+  </script>
+
+      <!-- One product -->
+      <div class="products_inside_cart">
+        
+      </div>
+  <!-- End of product -->
 
 
+      <div class="sum_basket">
+      
+       
+    
+      </div>
 
-    <hr  size="3" color="#000000" class="line1"><br/></hr>
+  </div>
+      
+  </div>
 
-    <h2>Chanel Chance</h2>
-      <a><img  src="" align= "center"  width="30%" alt="parfum" class="basket_foto"> </a>
-    <div class="kilkist">1 шт.</div>
-    <div class="price">2028 грн</div>
-
-    <hr  size="3" color="#000000" class="line2"><br/></hr>
-        <h2>Chanel Chance</h2>
-      <a><img  src="популярні парфуми фото/1.jpg" align= "center"  width="30%" alt="parfum" class="basket_foto"> </a>
-    <div class="kilkist">1 шт.</div>
-    <div class="price">2028 грн</div>
-
-    <hr  size="3" color="#000000" class="line2"><br/></hr>
-
-    <div class="do_oplaty">До оплати</div>
-
-    <div class="price2">2028 грн</div>
-
-    <input class="dws-basket" type="submit" name="submit" value="~> Оформити заказ">
-    </div>
-</div>
     {% if auth %}
     <li><a id="logout" href="{% url 'logout' %}">Вийти</a></li>
     {% endif %}

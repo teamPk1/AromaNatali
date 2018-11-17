@@ -38,7 +38,7 @@
 				</script>
 			{% endif %}
 
-	<div  class="infa_parfum">  {{ product.name }} </div> <a> 393 грн </a> <br><br>
+	<div  class="infa_parfum">  {{ product.name }} </div> <a> {{ product.price }} </a> <br><br>
 	{% if admin is not True %}
 	<a href="#" class="button7" id="buy_btn_{{ product.id }}"> купити </a></div>
 	<script>
@@ -51,10 +51,6 @@
 				data: {
 					csrfmiddlewaretoken: '{{ csrf_token }}',
 					id: id
-				}
-			}).done(function (data) {
-				if(data.amount){
-					$("#basket_number").html(data.amount)
 				}
 			})
 		})
