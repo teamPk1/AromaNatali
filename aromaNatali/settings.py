@@ -106,6 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
 
+# EMAIL_HOST = "smtp.ukr.net"
+# EMAIL_PORT = 465  
+# EMAIL_HOST_USER = "aromanatali@ukr.net"
+# EMAIL_HOST_PASSWORD = "" # SMTP password will be set if nessesery
+# EMAIL_USE_SSL = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 

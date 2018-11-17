@@ -334,7 +334,7 @@ def send_products(request):
 			html_content+="<a><img src='"+ str(p.image) +"' width=160px alt=parfum class=foto1> </a> <div class=name_buy1>"+ str(p.name) +"<div class=price_buy1>"+str(p.price)+" грн <div class=num1> "+str(i[0])+" шт </div> <div class=suma_buy1>"+str(int(p.price)*int(i[0]))+" грн <div class=X1> <hr size=2 color=#C0C0C0 class=line1><br></hr> </div></div></div></div> </div>"
 		html_content+="</div id='contact_info'><p>Email: "+str(email)+"</p><p>Ім'я: "+str(first_name)+"</p><p>Фамілія: "+str(last_name)+"</p><p>Телефон: "+str(phone)+"</p></div>"
 		subject = "Покупка від "+ str(first_name) + " "+ str(last_name)
-		from_email = email
+		from_email = "aromanatali@ukr.net"
 		to = "vadimuha13@gmail.com"
 		text_content = "У вас покупка"
 		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
