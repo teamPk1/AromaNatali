@@ -65,9 +65,9 @@ def about(request):
 		email = request.POST["email"]
 		message = request.POST["message"]
 		send_mail(
-			name+' відправив вам повідомлення',
+			name+' відправив вам повідомлення '+ email,
 			message,
-			email,
+			"aromanatali@ukr.net",
 			['vadimuha13@gmail.com']
 			)
 		context = {
