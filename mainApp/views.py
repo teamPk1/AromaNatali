@@ -15,6 +15,8 @@ from django.core.files.temp import NamedTemporaryFile
 import urllib.request
 import dropbox
 from django.core.mail import EmailMultiAlternatives
+from twilio.rest import Client
+
 
 
 def index(request):
@@ -328,9 +330,13 @@ def send_products(request):
 		first_name = request.GET["first_name"]
 		last_name = request.GET["last_name"]
 		phone = request.GET["phone"]
+		account_sid = "AC65468de5dbc455f5c5226931729f522c"
+		auth_token  = "b48f1a288c190fef819feb8672498b68"
+		sms = "Покупка від: " + first_name + " " + last_name + " \nТелефон: " +phone + "\nПокупка:\n" 
 		html_content = " <style type=text/css media=screen>.table1 a{ margin: 0 0 0 20px; font-size: 29px;}.name1{  margin: 0  0 0 150px; font-size: 20px;}.price1{ margin: -22px 0 0 410px; font-size: 20px;}.kilkist1{  margin: -22px 0 0 565px; font-size: 20px;}.suma1{ margin: -22px 0 0 735px; font-size: 20px;}.bay1{ margin: -22px 0 0 20px; font-size: 20px;}.line1{margin: 62px 22px 22px -900px;}.foto1{margin: 9px 0 0 0;}.name_buy1{ margin: -79px 0 0 195px;font-size: 18px;}.price_buy1{ margin: -22px 0 0 225px;font-size: 18px;}.num1{margin: 0 0 0 150px;font-size: 18px;}.suma_buy1{ margin: -22px 0 0 320px; font-size: 18px;}.X1{ margin: -49px 0 0 160px;}.dw-basket1:hover{transition: all 0.5s;background: #fff;color: #2c536c;}.dw-basket1{margin: -22px 0 25px 150px;font-size: 18px;}.itog1{margin: -52px 0 22px 542px;font-size: 22px;}.all1{margin: -23px 0 22px 222px;font-size: 22px;}</style> <div id=product-wrapper> <div class=product>"
 		for i in request.session["amount"]:
 			p = Product.objects.get(pk=i[1])
+			sms += str(p.name) +" "+str(i[0])+" шт - загальна вартість: " + str(int(p.price)*int(i[0])) + "\n"
 			html_content+="<a><img src='"+ str(p.image) +"' width=160px alt=parfum class=foto1> </a> <div class=name_buy1>"+ str(p.name) +"<div class=price_buy1>"+str(p.price)+" грн <div class=num1> "+str(i[0])+" шт </div> <div class=suma_buy1>"+str(int(p.price)*int(i[0]))+" грн <div class=X1> <hr size=2 color=#C0C0C0 class=line1><br></hr> </div></div></div></div> </div>"
 		html_content+="</div id='contact_info'><p>Email: "+str(email)+"</p><p>Ім'я: "+str(first_name)+"</p><p>Фамілія: "+str(last_name)+"</p><p>Телефон: "+str(phone)+"</p></div>"
 		subject = "Покупка від "+ str(first_name) + " "+ str(last_name)
@@ -340,6 +346,14 @@ def send_products(request):
 		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 		msg.attach_alternative(html_content, "text/html")
 		msg.send()
+		client = Client(account_sid, auth_token)
+		message = client.messages.create(
+                	to='+380506901137',
+                	from_='+14789991065',
+                    body=sms       
+                 )
+		print(message.sid)
+
 		featured = Product.objects.filter(is_featured=1)
 		context = {
 			"products" : featured,
