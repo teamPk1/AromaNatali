@@ -180,10 +180,10 @@ def delete(request):
 def add(request):
 	if request.method == "GET":
 		try:
-			product = Product(name="Вставте ім'я", image="0", image_name="1"+str(Product.objects.latest('id').id), description="Додайте опис", gender=-1, price=0, amount_present=0, is_featured=0)
+			product = Product(name="Вставте ім'я", image="0", image_name="1"+str(Product.objects.latest('id').id), description="Додайте опис", gender=-1, price=0, is_featured=0)
 			product.save()
 		except Product.DoesNotExist:
-			product = Product(name="Вставте ім'я", image="0", image_name="1"+str("0"), description="Додайте опис", gender=-1, price=0, amount_present=0, is_featured=0)
+			product = Product(name="Вставте ім'я", image="0", image_name="1"+str("0"), description="Додайте опис", gender=-1, price=0,  is_featured=0)
 			product.save()
 		context = {
 			"product" : product,
