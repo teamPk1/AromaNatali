@@ -129,6 +129,7 @@
     var wHeight = $(window).height(); //  window height
     var dWidth = wWidth * 0.8;  // dialog width 80% of window size
     var dHeight = wHeight * 0.8;
+    var has_atleast_one_product = false
     $( "#dialog" ).dialog({
       autoOpen: false,
       minWidth: dWidth,
@@ -154,8 +155,11 @@
           csrfmiddlewaretoken: '{{ csrf_token }}',
         }
     }).done(function (data) {
-      console.log(data)
       $.each(data, function () {
+        if(!has_atleast_one_product){
+          $(".sum_basket").append(" <input class='dw-basket1' type='submit' name='submit' value='Оформити заказ'>")
+          has_atleast_one_product = true
+        }
         $(".products_inside_cart").append("<a><img  src='"+ this.image +"' width='160px' alt='parfum' class='foto1'> </a> <div class='name_buy1'>"+this.name+"  <div class='price_buy1'>"+this.price+" грн <input class='num1' id='value_"+this.id+"' type='number' value='"+this.amount_in_basket+"' min='1' max='100'> <div class='suma_buy1'>"+ (this.price * this.amount_in_basket) +" грн <div class='X1'> <a href='#' id='delete_product_cart_btn_"+this.id+"'><img  src='https://steamuserimages-a.akamaihd.net/ugc/892140497684987363/C59D7710C43F385DCCE13661F92707019C326EC2/' width='18px'  class='foto1'> </a> <hr  size='2' color='#C0C0C0' class='line1'><br/></hr></div></div></div></div>")
          
           var script = document.createElement("script");
@@ -168,7 +172,7 @@
 
       })
         
-      $(".sum_basket").append(" <input class='dw-basket1' type='submit' name='submit' value='Оформити заказ'>")
+      
       $(".dw-basket1").click(function () {
           general_price = 0
             $.ajax({
